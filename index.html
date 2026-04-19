@@ -1,12 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
+<meta charset="UTF-8">
+<title>Hyejin Yoon</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #eee;
+}
+
+/* ☰ 버튼 */
+#menuToggle {
+  position: fixed;
+  top: 20px;
+  left: 280px;
+  z-index: 1001;
+  font-size: 22px;
+  background: #2b2b2b;
+  color: white;
+  padding: 8px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: left 0.35s ease;
+}
+
+/* 🔳 사이드바 */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: #1f1f1f;
+  padding: 24px 18px;
+  box-sizing: border-box;
+  color: #ddd;
+  transition: transform 0.35s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+/* 프로필 */
+.profile-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.indent { margin-left: 12px; }
+
+.profile-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #bdbdbd;
+  margin-bottom: 22px;
+}
+
+/* 메뉴 */
+.menu { border-top: 1px solid #333; }
+
+.menu-item {
+  padding: 14px 10px;
+  font-size: 14px;
+  border-bottom: 1px solid #2a2a2a;
+  color: #ccc;
+  display: block;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  background: #2a2a2a;
+  color: white;
+}
+
+.menu-item.active {
+  background: #3a3a3a;
+  color: white;
+}
+
+/* 본문 */
+#content {
+  margin-left: 260px;
+  padding: 40px;
+  transition: margin-left 0.35s ease;
+}
+
+/* 📱 모바일 */
+@media (max-width: 768px) {
+  #sidebar {
+    transform: translateX(-100%);
+  }
+  #menuToggle {
+    left: auto;
+    right: 20px;
+  }
+  #content {
+    margin-left: 0;
+  }
+}
+</style>
 </head>
+
 <body>
-  <p>Hello, World!</p>
+
+<!-- ☰ -->
+<div id="menuToggle">☰</div>
+
+<!-- 🔳 사이드바 -->
+<div id="sidebar">
+
+  <!-- ⚠️ 이거 바꿔야됨 -->
+  <img src="profile.jpg" class="profile-img">
+
+  <div class="profile-text">
+    <b>Hyejin Yoon</b><br>
+    Graduate student at KAIST<br><br>
+
+    Research interest:
+    <div class="indent">
+      Silicon Photonics<br>
+      Quantum Photonics<br>
+      Optoelectronics
+    </div>
+
+    <br>
+    📍 Daejeon, Korea<br>
+    📧 ktrnyoon@gmail.com
+  </div>
+
+  <div class="menu">
+    <a href="#" class="menu-item active">Home</a>
+    <a href="#" class="menu-item">Research</a>
+    <a href="#" class="menu-item">Publications</a>
+  </div>
+
+</div>
+
+<!-- 본문 -->
+<div id="content">
+  <h1>Welcome</h1>
+  <p>This is my research page.</p>
+</div>
+
+<script>
+const toggleBtn = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const content = document.getElementById('content');
+
+let isOpen = window.innerWidth > 768;
+
+toggleBtn.onclick = function() {
+  if (isOpen) {
+    sidebar.style.transform = 'translateX(-100%)';
+    content.style.marginLeft = '0';
+    toggleBtn.style.left = '20px';
+  } else {
+    sidebar.style.transform = 'translateX(0)';
+    content.style.marginLeft = '260px';
+    toggleBtn.style.left = '280px';
+  }
+  isOpen = !isOpen;
+}
+</script>
+
 </body>
 </html>
