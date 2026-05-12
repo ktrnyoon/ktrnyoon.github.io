@@ -122,7 +122,6 @@ a:hover { text-decoration: underline; }
 .menu-item:hover { background: var(--bg2); color: var(--text); text-decoration: none; }
 .menu-item.active { background: var(--bg2); color: var(--accent); }
 
-/* ── HAMBURGER ── */
 #menuToggle {
   position: fixed;
   top: 20px; left: 280px;
@@ -138,7 +137,6 @@ a:hover { text-decoration: underline; }
   font-family: 'IBM Plex Mono', monospace;
 }
 
-/* ── MAIN ── */
 #content {
   margin-left: 260px;
   padding: 56px 60px;
@@ -184,69 +182,20 @@ a:hover { text-decoration: underline; }
   margin-bottom: 20px;
   letter-spacing: -0.02em;
 }
-.home-headline em {
-  font-style: italic;
-  color: var(--accent);
-  font-weight: 400;
-}
 .home-intro {
-  font-size: 16px;
-  color: var(--muted);
-  max-width: 560px;
-  line-height: 1.85;
-  margin-bottom: 28px;
-}
-.home-aspiration {
-  font-size: 16px;
-  color: var(--text);
-  max-width: 600px;
-  line-height: 1.9;
-  margin-bottom: 40px;
-  padding: 20px 24px;
-  border-left: 3px solid var(--accent);
-  background: rgba(90,110,78,0.05);
-  border-radius: 0 5px 5px 0;
-  font-style: italic;
-}
-
-/* background 소개 박스 */
-.bg-box {
-  background: var(--panel);
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  padding: 22px 26px;
-  margin-bottom: 40px;
-}
-.bg-box-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--faint);
-  margin-bottom: 10px;
-}
-.bg-box-schools {
-  font-family: 'Libre Baskerville', serif;
   font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-.bg-box-schools span {
-  color: var(--accent);
-}
-.bg-box-desc {
-  font-size: 13.5px;
   color: var(--muted);
-  line-height: 1.75;
+  max-width: 580px;
+  line-height: 1.85;
+  margin-bottom: 18px;
 }
 
-/* keyword + 사진 그리드 */
+/* keyword 사진 그리드 */
 .kw-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 14px;
+  margin-top: 36px;
 }
 .kw-card {
   background: var(--panel);
@@ -258,7 +207,7 @@ a:hover { text-decoration: underline; }
 .kw-card:hover { border-color: var(--border2); }
 .kw-card-img {
   width: 100%;
-  height: 140px;
+  height: 150px;
   background: var(--bg3);
   overflow: hidden;
 }
@@ -267,18 +216,32 @@ a:hover { text-decoration: underline; }
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  color: var(--faint);
-  flex-direction: column;
-  gap: 6px;
+  font-size: 10px; color: var(--faint);
+  flex-direction: column; gap: 6px;
 }
-.kw-card-body { padding: 14px 16px; }
+
+/* comb 카드는 두 장 나란히 */
+.kw-card-img.double {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 150px;
+}
+.kw-card-img.double img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.kw-card-img.double .divider {
+  width: 1px;
+  background: var(--border2);
+}
+
+.kw-card-body { padding: 13px 16px; }
 .kw-card-title {
   font-family: 'Libre Baskerville', serif;
   font-size: 13px;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 .kw-card-sub {
   font-family: 'IBM Plex Mono', monospace;
@@ -299,6 +262,7 @@ a:hover { text-decoration: underline; }
   display: flex; align-items: center; gap: 12px;
 }
 .cv-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
+
 .cv-entry {
   display: grid;
   grid-template-columns: 155px 1fr;
@@ -308,33 +272,11 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--border);
 }
 .cv-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.cv-date {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--faint);
-  padding-top: 2px;
-  line-height: 1.7;
-}
-.cv-role {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 2px;
-}
+.cv-date { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); padding-top: 2px; line-height: 1.7; }
+.cv-role { font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
 .cv-org { font-size: 13.5px; color: var(--accent2); font-style: italic; margin-bottom: 3px; }
-.cv-loc {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--faint);
-  margin-bottom: 9px;
-}
-.cv-note {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--faint);
-  margin-bottom: 9px;
-}
+.cv-loc { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); margin-bottom: 9px; }
+.cv-note { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); margin-bottom: 9px; }
 .cv-bullets { list-style: none; font-size: 13.5px; color: var(--muted); line-height: 1.75; }
 .cv-bullets li { padding-left: 14px; position: relative; margin-bottom: 4px; }
 .cv-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 3px; }
@@ -351,6 +293,8 @@ a:hover { text-decoration: underline; }
 }
 .pub-group-label:first-child { margin-top: 0; }
 .pub-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
+
+/* 사진 있는 pub-item */
 .pub-item {
   display: grid;
   grid-template-columns: 44px 1fr;
@@ -359,16 +303,38 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--border);
 }
 .pub-item > * { min-width: 0; }
+
+/* 사진 포함 pub-item */
+.pub-item-with-img {
+  display: grid;
+  grid-template-columns: 44px 1fr 160px;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.pub-item-with-img > * { min-width: 0; }
+.pub-thumb {
+  width: 160px;
+  height: 100px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.pub-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .pub-id {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10.5px;
   color: var(--accent);
   padding-top: 2px;
 }
-.pub-title { font-size: 14.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.5; overflow-wrap: break-word; }
-.pub-authors { font-size: 13px; color: var(--muted); margin-bottom: 3px; line-height: 1.6; overflow-wrap: break-word; }
+.pub-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.5; overflow-wrap: break-word; }
+.pub-authors { font-size: 12.5px; color: var(--muted); margin-bottom: 3px; line-height: 1.6; overflow-wrap: break-word; }
 .pub-authors strong { color: var(--accent2); font-weight: 600; font-style: italic; }
-.pub-venue { font-size: 13px; color: var(--accent2); font-style: italic; overflow-wrap: break-word; }
+.pub-venue { font-size: 12.5px; color: var(--accent2); font-style: italic; overflow-wrap: break-word; }
 .pub-badge {
   display: inline-block;
   margin-left: 7px;
@@ -397,23 +363,17 @@ a:hover { text-decoration: underline; }
 .award-name { font-size: 14px; color: var(--text); margin-bottom: 3px; font-weight: 600; }
 .award-org { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--faint); line-height: 1.6; }
 
-/* ── CV 섹션 (PDF embed) ── */
+/* ── CV PDF ── */
 .cv-pdf-wrap {
   width: 100%;
   border: 1px solid var(--border2);
   border-radius: 6px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
-.cv-pdf-wrap iframe {
-  width: 100%;
-  height: 80vh;
-  display: block;
-  border: none;
-}
+.cv-pdf-wrap iframe { width: 100%; height: 80vh; display: block; border: none; }
 .cv-download {
   display: inline-block;
-  margin-top: 14px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   padding: 10px 18px;
@@ -444,7 +404,8 @@ footer {
   #content { margin-left: 0 !important; padding: 28px 20px; }
   .cv-entry, .award-item { grid-template-columns: 1fr; gap: 4px; }
   .home-headline { font-size: 28px; }
-  .pub-item { grid-template-columns: 36px 1fr; }
+  .pub-item, .pub-item-with-img { grid-template-columns: 36px 1fr; }
+  .pub-thumb { display: none; }
   .kw-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -454,11 +415,7 @@ footer {
 <div id="menuToggle">☰</div>
 
 <div id="sidebar">
-  <!--
-  profile.jpg를 같은 폴더에 넣고 아래 주석 해제, placeholder div 삭제
   <img src="profile.jpg" class="profile-img" alt="Hyejin Yoon">
-  -->
-  <div class="profile-img-placeholder">📷 profile.jpg</div>
 
   <div class="profile-name">Hyejin Yoon</div>
   <div class="profile-role">
@@ -473,12 +430,12 @@ footer {
 
   <div class="menu">
     <span class="menu-label">Menu</span>
-    <a href="#" class="menu-item active"      onclick="showSection('home',this);return false;">Home</a>
-    <a href="#" class="menu-item"             onclick="showSection('background',this);return false;">Academic Background</a>
-    <a href="#" class="menu-item"             onclick="showSection('publications',this);return false;">Publications</a>
-    <a href="#" class="menu-item"             onclick="showSection('awards',this);return false;">Selected Awards</a>
-    <a href="#" class="menu-item"             onclick="showSection('etc',this);return false;">Etc</a>
-    <a href="#" class="menu-item"             onclick="showSection('cv',this);return false;">CV</a>
+    <a href="#" class="menu-item active"  onclick="showSection('home',this);return false;">Home</a>
+    <a href="#" class="menu-item"         onclick="showSection('background',this);return false;">Academic Background</a>
+    <a href="#" class="menu-item"         onclick="showSection('publications',this);return false;">Publications</a>
+    <a href="#" class="menu-item"         onclick="showSection('awards',this);return false;">Selected Awards</a>
+    <a href="#" class="menu-item"         onclick="showSection('etc',this);return false;">Etc</a>
+    <a href="#" class="menu-item"         onclick="showSection('cv',this);return false;">CV</a>
   </div>
 </div>
 
@@ -497,13 +454,12 @@ footer {
       I aspire to develop photonic–electronic hybrid platforms for next-generation AI hardware, combining the programmability and memory of electronics with the ultra-high bandwidth and energy efficiency of photonics to enable novel device functionalities beyond conventional computing systems.
     </p>
 
-    <!-- Research keyword 사진 그리드 -->
     <div class="kw-grid">
 
+      <!-- Non-Hermitian Photonics -->
       <div class="kw-card">
         <div class="kw-card-img">
-          <!-- <img src="kw-ep.jpg" alt="Exceptional Points"> -->
-          <div class="kw-card-img-placeholder">📷 kw-ep.jpg</div>
+          <img src="kw-ep.jpg" alt="Non-Hermitian Photonics">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Non-Hermitian Photonics</div>
@@ -511,10 +467,12 @@ footer {
         </div>
       </div>
 
+      <!-- Integrated Photonics — comb1 + comb2 나란히 -->
       <div class="kw-card">
-        <div class="kw-card-img">
-          <!-- <img src="kw-comb.jpg" alt="Microcombs"> -->
-          <div class="kw-card-img-placeholder">📷 kw-comb.jpg</div>
+        <div class="kw-card-img double">
+          <img src="comb1.jpg" alt="Microcombs 1">
+          <div class="divider"></div>
+          <img src="comb2.jpg" alt="Microcombs 2">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Integrated Photonics</div>
@@ -522,10 +480,10 @@ footer {
         </div>
       </div>
 
+      <!-- Photonic–Electronic Hybrid -->
       <div class="kw-card">
         <div class="kw-card-img">
-          <!-- <img src="kw-syn.jpg" alt="Optoelectronics"> -->
-          <div class="kw-card-img-placeholder">📷 kw-syn.jpg</div>
+          <img src="Nr.jpg" alt="Neuromorphic">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Photonic–Electronic Hybrid</div>
@@ -533,10 +491,10 @@ footer {
         </div>
       </div>
 
+      <!-- Fabrication -->
       <div class="kw-card">
         <div class="kw-card-img">
-          <!-- <img src="kw-fab.jpg" alt="Fabrication"> -->
-          <div class="kw-card-img-placeholder">📷 kw-fab.jpg</div>
+          <img src="fab.jpg" alt="Fabrication">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Fabrication-Driven Innovation</div>
@@ -662,21 +620,27 @@ footer {
 
     <div class="pub-group-label">Journal Articles</div>
 
-    <div class="pub-item">
+    <div class="pub-item-with-img">
       <div class="pub-id">[J0]</div>
       <div>
         <div class="pub-title">InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</div>
         <div class="pub-authors"><strong>H. Yoon</strong>, ..., S. Kim</div>
         <div class="pub-venue">Manuscript in preparation</div>
       </div>
+      <div class="pub-thumb">
+        <img src="j0.jpg" alt="J0">
+      </div>
     </div>
 
-    <div class="pub-item">
+    <div class="pub-item-with-img">
       <div class="pub-id">[J1]</div>
       <div>
         <div class="pub-title">A Van der Waals Optoelectronic Synapse with Tunable Positive and Negative Post-Synaptic Current for Highly Accurate Spiking Neural Networks</div>
         <div class="pub-authors"><strong>H. Yoon</strong>*, S. Park*, Y. K. Kim*, J. Baek, K. H. Kim, S. Yun, H. Son, J. Choi, B. C. Jang, D.-H. Kang</div>
         <div class="pub-venue"><a href="https://doi.org/10.1002/adfm.74366" target="_blank">Advanced Functional Materials, 2026</a> <span class="pub-badge">Front Cover</span></div>
+      </div>
+      <div class="pub-thumb">
+        <img src="advan_jounral.jpg" alt="Advanced Functional Materials">
       </div>
     </div>
 
@@ -691,30 +655,39 @@ footer {
 
     <div class="pub-group-label">Conference Proceedings</div>
 
-    <div class="pub-item">
+    <div class="pub-item-with-img">
       <div class="pub-id">[C1]</div>
       <div>
         <div class="pub-title">Second-Harmonic Microcomb Transfer in Dispersion-Engineered Concentric Ring Resonators</div>
         <div class="pub-authors">J. Song*, <strong>H. Yoon</strong>*, S. Baek, S. Kim</div>
         <div class="pub-venue">European Conference on Integrated Optics (ECIO), 2026</div>
       </div>
+      <div class="pub-thumb">
+        <img src="ecio.jpg" alt="ECIO 2026">
+      </div>
     </div>
 
-    <div class="pub-item">
+    <div class="pub-item-with-img">
       <div class="pub-id">[C2]</div>
       <div>
         <div class="pub-title">InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</div>
         <div class="pub-authors"><strong>H. Yoon</strong>*, Y. Reum*, M. Lee, D. Shin, C. G. Mayer, J. S. Moon, M. Hartig, B. S. Damasceno, S. Höfling, S.-H. Gong, A. Pfenning, Y.-H. Ko, S. Kim</div>
         <div class="pub-venue">13th International Conference on Quantum Dots, 2026</div>
       </div>
+      <div class="pub-thumb">
+        <img src="fourier.jpg" alt="QD Conference 2026">
+      </div>
     </div>
 
-    <div class="pub-item">
+    <div class="pub-item-with-img">
       <div class="pub-id">[C3]</div>
       <div>
         <div class="pub-title">Phase-Mismatched Waveguide-to-Racetrack Microresonator Coupling</div>
         <div class="pub-authors"><strong>H. Yoon</strong>, J. Kim, S. Baek, S. Kim</div>
         <div class="pub-venue">Optical Society of Korea Photonics Conference, 2024</div>
+      </div>
+      <div class="pub-thumb">
+        <img src="conference_coupling.jpg" alt="OSK 2024">
       </div>
     </div>
 
@@ -797,7 +770,7 @@ footer {
       <div class="award-date">2020</div>
       <div>
         <div class="award-name">AI Industrial Intelligence Competition — Excellence Award</div>
-        <div class="award-org">Korea Artificial Intelligence Association — AI voice recognition model</div>
+        <div class="award-org">Korea Artificial Intelligence Association</div>
       </div>
     </div>
 
@@ -849,7 +822,7 @@ footer {
 
     <a class="cv-download" href="CV_HyejinYoon_KAIST_GIST.pdf" target="_blank">↓ Download PDF</a>
 
-    <div class="cv-pdf-wrap" style="margin-top:20px;">
+    <div class="cv-pdf-wrap">
       <iframe src="CV_HyejinYoon_KAIST_GIST.pdf"></iframe>
     </div>
 
