@@ -225,14 +225,12 @@ a:hover { text-decoration: underline; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 150px;
+  gap: 1px;
+  background: var(--border2);
 }
 .kw-card-img.double img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
-}
-.kw-card-img.double .divider {
-  width: 1px;
-  background: var(--border2);
 }
 
 .kw-card-body { padding: 13px 16px; }
@@ -492,7 +490,6 @@ footer {
       <div class="kw-card">
         <div class="kw-card-img double">
           <img src="comb1.jpg" alt="Microcombs 1" class="zoomable" onclick="openModal(this.src)">
-          <div class="divider"></div>
           <img src="comb2.jpg" alt="Microcombs 2" class="zoomable" onclick="openModal(this.src)">
         </div>
         <div class="kw-card-body">
@@ -853,7 +850,7 @@ footer {
 </div>
 
 <div id="modal" onclick="closeModal()">
-  <img id="modal-img" src="" alt="">
+  <img id="modal-img" src="" alt="" onclick="event.stopPropagation()">
 </div>
 
 <script>
