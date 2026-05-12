@@ -396,6 +396,27 @@ footer {
   justify-content: space-between;
 }
 
+/* ── MODAL ── */
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.75);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+#modal.open { display: flex; }
+#modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+.zoomable { cursor: zoom-in; }
+
 /* 모바일 */
 @media (max-width: 768px) {
   #sidebar { transform: translateX(-100%); }
@@ -459,7 +480,7 @@ footer {
       <!-- Non-Hermitian Photonics -->
       <div class="kw-card">
         <div class="kw-card-img">
-          <img src="kw-ep.jpg" alt="Non-Hermitian Photonics">
+          <img src="kw-ep.jpg" alt="Non-Hermitian Photonics" class="zoomable" onclick="openModal(this.src)">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Non-Hermitian Photonics</div>
@@ -470,9 +491,9 @@ footer {
       <!-- Integrated Photonics — comb1 + comb2 나란히 -->
       <div class="kw-card">
         <div class="kw-card-img double">
-          <img src="comb1.jpg" alt="Microcombs 1">
+          <img src="comb1.jpg" alt="Microcombs 1" class="zoomable" onclick="openModal(this.src)">
           <div class="divider"></div>
-          <img src="comb2.jpg" alt="Microcombs 2">
+          <img src="comb2.jpg" alt="Microcombs 2" class="zoomable" onclick="openModal(this.src)">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Integrated Photonics</div>
@@ -483,7 +504,7 @@ footer {
       <!-- Photonic–Electronic Hybrid -->
       <div class="kw-card">
         <div class="kw-card-img">
-          <img src="Nr.jpg" alt="Neuromorphic">
+          <img src="Nr.jpg" alt="Neuromorphic" class="zoomable" onclick="openModal(this.src)">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Photonic–Electronic Hybrid</div>
@@ -494,7 +515,7 @@ footer {
       <!-- Fabrication -->
       <div class="kw-card">
         <div class="kw-card-img">
-          <img src="fab.jpg" alt="Fabrication">
+          <img src="fab.jpg" alt="Fabrication" class="zoomable" onclick="openModal(this.src)">
         </div>
         <div class="kw-card-body">
           <div class="kw-card-title">Fabrication-Driven Innovation</div>
@@ -628,7 +649,7 @@ footer {
         <div class="pub-venue">Manuscript in preparation</div>
       </div>
       <div class="pub-thumb">
-        <img src="j0.jpg" alt="J0">
+        <img src="j0.jpg" alt="J0" class="zoomable" onclick="openModal(this.src)">
       </div>
     </div>
 
@@ -640,7 +661,7 @@ footer {
         <div class="pub-venue"><a href="https://doi.org/10.1002/adfm.74366" target="_blank">Advanced Functional Materials, 2026</a> <span class="pub-badge">Front Cover</span></div>
       </div>
       <div class="pub-thumb">
-        <img src="advan_jounral.jpg" alt="Advanced Functional Materials">
+        <img src="advan_jounral.jpg" alt="Advanced Functional Materials" class="zoomable" onclick="openModal(this.src)">
       </div>
     </div>
 
@@ -663,7 +684,7 @@ footer {
         <div class="pub-venue">European Conference on Integrated Optics (ECIO), 2026</div>
       </div>
       <div class="pub-thumb">
-        <img src="ecio.jpg" alt="ECIO 2026">
+        <img src="ecio.jpg" alt="ECIO 2026" class="zoomable" onclick="openModal(this.src)">
       </div>
     </div>
 
@@ -675,7 +696,7 @@ footer {
         <div class="pub-venue">13th International Conference on Quantum Dots, 2026</div>
       </div>
       <div class="pub-thumb">
-        <img src="fourier.jpg" alt="QD Conference 2026">
+        <img src="fourier.jpg" alt="QD Conference 2026" class="zoomable" onclick="openModal(this.src)">
       </div>
     </div>
 
@@ -687,7 +708,7 @@ footer {
         <div class="pub-venue">Optical Society of Korea Photonics Conference, 2024</div>
       </div>
       <div class="pub-thumb">
-        <img src="conference_coupling.jpg" alt="OSK 2024">
+        <img src="conference_coupling.jpg" alt="OSK 2024" class="zoomable" onclick="openModal(this.src)">
       </div>
     </div>
 
@@ -831,7 +852,20 @@ footer {
 
 </div>
 
+<div id="modal" onclick="closeModal()">
+  <img id="modal-img" src="" alt="">
+</div>
+
 <script>
+function openModal(src) {
+  document.getElementById('modal-img').src = src;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
 function showSection(id, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
