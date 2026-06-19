@@ -21,9 +21,7 @@
   --accent2: #4a6278;
   --accent3: #7a5c6e;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: 'Source Serif 4', Georgia, serif;
   background: var(--bg);
@@ -31,244 +29,51 @@ body {
   font-size: 17px;
   line-height: 1.75;
 }
-
 a { color: var(--accent2); text-decoration: none; }
 a:hover { text-decoration: underline; }
-
-/* ── SIDEBAR ── */
 #sidebar {
-  position: fixed;
-  top: 0; left: 0;
-  width: 260px;
-  height: 100vh;
-  background: var(--panel);
-  border-right: 1px solid var(--border);
-  padding: 32px 22px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  z-index: 1000;
-  transition: transform 0.35s ease;
+  position: fixed; top: 0; left: 0; width: 260px; height: 100vh;
+  background: var(--panel); border-right: 1px solid var(--border);
+  padding: 32px 22px; box-sizing: border-box; overflow-y: auto;
+  z-index: 1000; transition: transform 0.35s ease;
 }
-
 .profile-img {
-  width: 100%; aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 18px;
-  display: block;
-  border: 1px solid var(--border);
+  width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px;
+  margin-bottom: 18px; display: block; border: 1px solid var(--border);
 }
-.profile-img-placeholder {
-  width: 100%; aspect-ratio: 1;
-  border-radius: 6px;
-  margin-bottom: 18px;
-  background: var(--bg2);
-  border: 1px dashed var(--border2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--faint);
-}
-
-.profile-name {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.profile-role {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 14px;
-}
-.profile-contact {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--muted);
-  line-height: 1.9;
-  margin-bottom: 22px;
-}
+.profile-name { font-family: 'Libre Baskerville', serif; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.profile-role { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.profile-contact { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--muted); line-height: 1.9; margin-bottom: 22px; }
 .profile-contact a { color: var(--accent2); }
-
 .menu { border-top: 1px solid var(--border); padding-top: 6px; }
-.menu-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--faint);
-  padding: 12px 8px 6px;
-  display: block;
-}
-.menu-item {
-  padding: 9px 10px;
-  font-family: 'Source Serif 4', serif;
-  font-size: 14px;
-  font-style: italic;
-  border-radius: 4px;
-  color: var(--muted);
-  display: block;
-  text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-  margin-bottom: 2px;
-}
+.menu-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); padding: 12px 8px 6px; display: block; }
+.menu-item { padding: 9px 10px; font-family: 'Source Serif 4', serif; font-size: 14px; font-style: italic; border-radius: 4px; color: var(--muted); display: block; text-decoration: none; transition: background 0.15s, color 0.15s; margin-bottom: 2px; }
 .menu-item:hover { background: var(--bg2); color: var(--text); text-decoration: none; }
 .menu-item.active { background: var(--bg2); color: var(--accent); }
-
-#menuToggle {
-  position: fixed;
-  top: 20px; left: 280px;
-  z-index: 1001;
-  font-size: 20px;
-  background: var(--panel);
-  color: var(--text);
-  padding: 7px 11px;
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid var(--border2);
-  transition: left 0.35s ease;
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-#content {
-  margin-left: 260px;
-  padding: 56px 60px;
-  max-width: 1040px;
-  transition: margin-left 0.35s ease;
-}
-
+#menuToggle { position: fixed; top: 20px; left: 280px; z-index: 1001; font-size: 20px; background: var(--panel); color: var(--text); padding: 7px 11px; border-radius: 5px; cursor: pointer; border: 1px solid var(--border2); transition: left 0.35s ease; font-family: 'IBM Plex Mono', monospace; }
+#content { margin-left: 260px; padding: 56px 60px; max-width: 1040px; transition: margin-left 0.35s ease; }
 .section { display: none; }
-.section.active {
-  display: block;
-  animation: fadeUp 0.35s ease both;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.sec-eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-.sec-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 32px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border2);
-}
-
-/* ── HOME ── */
-.home-headline {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
-}
-.home-intro {
-  font-size: 15px;
-  color: var(--muted);
-  max-width: 580px;
-  line-height: 1.85;
-  margin-bottom: 18px;
-}
-
-/* keyword 사진 그리드 */
-.kw-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-top: 36px;
-}
-.kw-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
+.section.active { display: block; animation: fadeUp 0.35s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.sec-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.sec-title { font-family: 'Libre Baskerville', serif; font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border2); }
+.home-headline { font-family: 'Libre Baskerville', serif; font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 20px; letter-spacing: -0.02em; }
+.home-intro { font-size: 15px; color: var(--muted); max-width: 580px; line-height: 1.85; margin-bottom: 18px; }
+.home-updated { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); margin-top: 4px; margin-bottom: 0; }
+.kw-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 36px; }
+.kw-card { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: border-color 0.2s; }
 .kw-card:hover { border-color: var(--border2); }
-.kw-card-img {
-  width: 100%;
-  height: 150px;
-  background: var(--bg3);
-  overflow: hidden;
-}
+.kw-card-img { width: 100%; height: 150px; background: var(--bg3); overflow: hidden; }
 .kw-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.kw-card-img-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; color: var(--faint);
-  flex-direction: column; gap: 6px;
-}
-
-/* comb 카드는 두 장 나란히 */
-.kw-card-img.double {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 150px;
-  gap: 1px;
-  background: var(--border2);
-}
-.kw-card-img.double img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-
+.kw-card-img.double { display: grid; grid-template-columns: 1fr 1fr; height: 150px; gap: 1px; background: var(--border2); }
+.kw-card-img.double img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .kw-card-body { padding: 13px 16px; }
-.kw-card-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 3px;
-}
-.kw-card-sub {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  color: var(--faint);
-  line-height: 1.6;
-}
-
-/* ── ACADEMIC BACKGROUND ── */
+.kw-card-title { font-family: 'Libre Baskerville', serif; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.kw-card-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--faint); line-height: 1.6; }
 .cv-section { margin-bottom: 44px; }
-.cv-section-title {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 12px;
-}
+.cv-section-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
 .cv-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
-
-.cv-entry {
-  display: grid;
-  grid-template-columns: 155px 1fr;
-  gap: 14px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-}
+.cv-entry { display: grid; grid-template-columns: 155px 1fr; gap: 14px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
 .cv-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 .cv-date { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); padding-top: 2px; line-height: 1.7; }
 .cv-role { font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
@@ -277,145 +82,36 @@ a:hover { text-decoration: underline; }
 .cv-note { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); margin-bottom: 9px; }
 .cv-bullets { list-style: none; font-size: 13.5px; color: var(--muted); line-height: 1.75; }
 .cv-bullets li { padding-left: 14px; position: relative; margin-bottom: 4px; }
-.cv-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 3px; }
-
-/* ── PUBLICATIONS ── */
-.pub-group-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--faint);
-  margin: 32px 0 16px;
-  display: flex; align-items: center; gap: 12px;
-}
+.cv-bullets li::before { content: '\2014'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 3px; }
+.pub-group-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin: 32px 0 16px; display: flex; align-items: center; gap: 12px; }
 .pub-group-label:first-child { margin-top: 0; }
 .pub-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
-
-/* 사진 있는 pub-item */
-.pub-item {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 14px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border);
-}
+.pub-item { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--border); }
 .pub-item > * { min-width: 0; }
-
-/* 사진 포함 pub-item */
-.pub-item-with-img {
-  display: grid;
-  grid-template-columns: 44px 1fr 160px;
-  gap: 14px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
-}
+.pub-item-with-img { display: grid; grid-template-columns: 44px 1fr 160px; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: start; }
 .pub-item-with-img > * { min-width: 0; }
-.pub-thumb {
-  width: 160px;
-  height: 100px;
-  border-radius: 4px;
-  overflow: hidden;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  flex-shrink: 0;
-}
+.pub-thumb { width: 160px; height: 100px; border-radius: 4px; overflow: hidden; background: var(--bg3); border: 1px solid var(--border); flex-shrink: 0; }
 .pub-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-.pub-id {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--accent);
-  padding-top: 2px;
-}
+.pub-id { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--accent); padding-top: 2px; }
 .pub-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.5; overflow-wrap: break-word; }
 .pub-authors { font-size: 12.5px; color: var(--muted); margin-bottom: 3px; line-height: 1.6; overflow-wrap: break-word; }
 .pub-authors strong { color: var(--accent2); font-weight: 600; font-style: italic; }
 .pub-venue { font-size: 12.5px; color: var(--accent2); font-style: italic; overflow-wrap: break-word; }
-.pub-badge {
-  display: inline-block;
-  margin-left: 7px;
-  font-style: normal;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  padding: 2px 7px;
-  border-radius: 3px;
-  background: rgba(90,110,78,0.08);
-  color: var(--accent);
-  border: 1px solid rgba(90,110,78,0.22);
-  vertical-align: middle;
-}
-
-/* ── AWARDS ── */
-.award-item {
-  display: grid;
-  grid-template-columns: 155px 1fr;
-  gap: 14px;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
+.pub-badge { display: inline-block; margin-left: 7px; font-style: normal; font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 2px 7px; border-radius: 3px; background: rgba(90,110,78,0.08); color: var(--accent); border: 1px solid rgba(90,110,78,0.22); vertical-align: middle; }
+.award-item { display: grid; grid-template-columns: 155px 1fr; gap: 14px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
 .award-item:last-child { border-bottom: none; }
 .award-date { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); padding-top: 2px; }
 .award-name { font-size: 14px; color: var(--text); margin-bottom: 3px; font-weight: 600; }
 .award-org { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--faint); line-height: 1.6; }
-
-/* ── CV PDF ── */
-.cv-pdf-wrap {
-  width: 100%;
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 20px;
-}
+.cv-pdf-wrap { width: 100%; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; margin-top: 20px; }
 .cv-pdf-wrap iframe { width: 100%; height: 80vh; display: block; border: none; }
-.cv-download {
-  display: inline-block;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  padding: 10px 18px;
-  border-radius: 4px;
-  background: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  transition: opacity 0.15s;
-}
+.cv-download { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 10px 18px; border-radius: 4px; background: var(--accent); color: #fff; text-decoration: none; transition: opacity 0.15s; }
 .cv-download:hover { opacity: 0.85; text-decoration: none; }
-
-footer {
-  margin-top: 60px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border2);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  color: var(--faint);
-  display: flex;
-  justify-content: space-between;
-}
-
-/* ── MODAL ── */
-#modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,0.75);
-  align-items: center;
-  justify-content: center;
-  cursor: zoom-out;
-}
+footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border2); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); display: flex; justify-content: space-between; }
+#modal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.75); align-items: center; justify-content: center; cursor: zoom-out; }
 #modal.open { display: flex; }
-#modal img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-}
+#modal img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
 .zoomable { cursor: zoom-in; }
-
-/* 모바일 */
 @media (max-width: 768px) {
   #sidebar { transform: translateX(-100%); }
   #sidebar.open { transform: translateX(0); box-shadow: 8px 0 30px rgba(0,0,0,0.15); }
@@ -430,112 +126,58 @@ footer {
 </style>
 </head>
 <body>
-
-<div id="menuToggle">☰</div>
-
+<div id="menuToggle">\u2630</div>
 <div id="sidebar">
   <img src="profile.jpg" class="profile-img" alt="Hyejin Yoon">
-
   <div class="profile-name">Hyejin Yoon</div>
-  <div class="profile-role">
-    M.S. Candidate · KAIST<br>
-    Integrated Metaphotonics Lab<br>
-    <span style="color:var(--accent);font-style:italic;">B.S. GIST → M.S. KAIST</span>
-  </div>
-  <div class="profile-contact">
-    📧 <a href="mailto:ktrnyoon@gmail.com">ktrnyoon@gmail.com</a><br>
-    📍 Daejeon, Republic of Korea
-  </div>
-
+  <div class="profile-role">M.S. Candidate \u00b7 KAIST<br>Integrated Metaphotonics Lab<br><span style="color:var(--accent);font-style:italic;">B.S. GIST \u2192 M.S. KAIST</span></div>
+  <div class="profile-contact">\ud83d\udce7 <a href="mailto:ktrnyoon@gmail.com">ktrnyoon@gmail.com</a><br>\ud83d\udccd Daejeon, Republic of Korea</div>
   <div class="menu">
     <span class="menu-label">Menu</span>
-    <a href="#" class="menu-item active"  onclick="showSection('home',this);return false;">Home</a>
-    <a href="#" class="menu-item"         onclick="showSection('background',this);return false;">Academic Background</a>
-    <a href="#" class="menu-item"         onclick="showSection('publications',this);return false;">Publications</a>
-    <a href="#" class="menu-item"         onclick="showSection('awards',this);return false;">Selected Awards</a>
-    <a href="#" class="menu-item"         onclick="showSection('etc',this);return false;">Etc</a>
-    <a href="#" class="menu-item"         onclick="showSection('cv',this);return false;">CV</a>
+    <a href="#" class="menu-item active" onclick="showSection('home',this);return false;">Home</a>
+    <a href="#" class="menu-item" onclick="showSection('background',this);return false;">Academic Background</a>
+    <a href="#" class="menu-item" onclick="showSection('publications',this);return false;">Publications</a>
+    <a href="#" class="menu-item" onclick="showSection('awards',this);return false;">Selected Awards</a>
+    <a href="#" class="menu-item" onclick="showSection('etc',this);return false;">Etc</a>
+    <a href="#" class="menu-item" onclick="showSection('cv',this);return false;">CV</a>
   </div>
 </div>
-
 <div id="content">
-
-  <!-- ══ HOME ══════════════════════════════════════════════ -->
+  <!-- HOME -->
   <div id="home" class="section active">
-
     <h1 class="home-headline">Bridging photonics<br>and electronics,<br>end-to-end.</h1>
-
-    <p class="home-intro">
-      M.S. Candidate at KAIST (B.S. GIST). GIST and KAIST are fully funded science and technology universities established by the Korean government.
-    </p>
-
-    <p class="home-intro">
-      I aspire to develop photonic–electronic hybrid platforms for next-generation AI hardware, combining the programmability and memory of electronics with the ultra-high bandwidth and energy efficiency of photonics to enable novel device functionalities beyond conventional computing systems.
-    </p>
-
+    <p class="home-intro">M.S. Candidate at KAIST (B.S. GIST). GIST and KAIST are fully funded science and technology universities established by the Korean government.</p>
+    <p class="home-intro">I aspire to develop photonic\u2013electronic hybrid platforms for next-generation AI hardware, combining the programmability and memory of electronics with the ultra-high bandwidth and energy efficiency of photonics to enable novel device functionalities beyond conventional computing systems.</p>
+    <p class="home-updated">Last updated: 2026.06.29</p>
     <div class="kw-grid">
-
-      <!-- Non-Hermitian Photonics -->
       <div class="kw-card">
-        <div class="kw-card-img">
-          <img src="kw-ep.jpg" alt="Non-Hermitian Photonics" class="zoomable" onclick="openModal(this.src)">
-        </div>
-        <div class="kw-card-body">
-          <div class="kw-card-title">Non-Hermitian Photonics</div>
-          <div class="kw-card-sub">Exceptional points · Quantum dots · ARPL</div>
-        </div>
+        <div class="kw-card-img"><img src="kw-ep.jpg" alt="Non-Hermitian Photonics" class="zoomable" onclick="openModal(this.src)"></div>
+        <div class="kw-card-body"><div class="kw-card-title">Non-Hermitian Photonics</div><div class="kw-card-sub">Exceptional points \u00b7 Quantum dots \u00b7 ARPL</div></div>
       </div>
-
-      <!-- Integrated Photonics — comb1 + comb2 나란히 -->
       <div class="kw-card">
-        <div class="kw-card-img double">
-          <img src="comb1.jpg" alt="Microcombs 1" class="zoomable" onclick="openModal(this.src)">
-          <img src="comb2.jpg" alt="Microcombs 2" class="zoomable" onclick="openModal(this.src)">
-        </div>
-        <div class="kw-card-body">
-          <div class="kw-card-title">Integrated Photonics</div>
-          <div class="kw-card-sub">Microcombs · Ring resonators · SHG</div>
-        </div>
+        <div class="kw-card-img double"><img src="comb1.jpg" alt="Microcombs 1" class="zoomable" onclick="openModal(this.src)"><img src="comb2.jpg" alt="Microcombs 2" class="zoomable" onclick="openModal(this.src)"></div>
+        <div class="kw-card-body"><div class="kw-card-title">Integrated Photonics</div><div class="kw-card-sub">Microcombs \u00b7 Ring resonators \u00b7 SHG</div></div>
       </div>
-
-      <!-- Photonic–Electronic Hybrid -->
       <div class="kw-card">
-        <div class="kw-card-img">
-          <img src="Nr.jpg" alt="Neuromorphic" class="zoomable" onclick="openModal(this.src)">
-        </div>
-        <div class="kw-card-body">
-          <div class="kw-card-title">Photonic–Electronic Hybrid</div>
-          <div class="kw-card-sub">2D materials · Neuromorphic · vdW heterostructure</div>
-        </div>
+        <div class="kw-card-img"><img src="Nr.jpg" alt="Neuromorphic" class="zoomable" onclick="openModal(this.src)"></div>
+        <div class="kw-card-body"><div class="kw-card-title">Photonic\u2013Electronic Hybrid</div><div class="kw-card-sub">2D materials \u00b7 Neuromorphic \u00b7 vdW heterostructure</div></div>
       </div>
-
-      <!-- Fabrication -->
       <div class="kw-card">
-        <div class="kw-card-img double">
-          <img src="fab.jpg" alt="Fabrication" class="zoomable" onclick="openModal(this.src)">
-          <img src="gds.jpg" alt="GDS Layout" class="zoomable" onclick="openModal(this.src)">
-        </div>
-        <div class="kw-card-body">
-          <div class="kw-card-title">Fabrication-Driven Innovation</div>
-          <div class="kw-card-sub">EBL · Photolithography · MPW (Ligentec AN350)</div>
-        </div>
+        <div class="kw-card-img double"><img src="fab.jpg" alt="Fabrication" class="zoomable" onclick="openModal(this.src)"><img src="gds.jpg" alt="GDS Layout" class="zoomable" onclick="openModal(this.src)"></div>
+        <div class="kw-card-body"><div class="kw-card-title">Fabrication-Driven Innovation</div><div class="kw-card-sub">EBL \u00b7 Photolithography \u00b7 MPW (Ligentec AN350)</div></div>
       </div>
-
     </div>
-
-    <footer><span>Hyejin Yoon © 2026</span><span>ktrnyoon@gmail.com</span></footer>
+    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
   </div>
 
-  <!-- ══ ACADEMIC BACKGROUND ═══════════════════════════════ -->
+  <!-- ACADEMIC BACKGROUND -->
   <div id="background" class="section">
     <p class="sec-eyebrow">Academic Background</p>
     <div class="sec-title">Education &amp; Research Experience</div>
-
     <div class="cv-section">
       <div class="cv-section-title">Education</div>
-
       <div class="cv-entry">
-        <div class="cv-date">Mar 2024 –<br>Aug 2026 (exp.)</div>
+        <div class="cv-date">Mar 2024 \u2013<br>Aug 2026 (exp.)</div>
         <div>
           <div class="cv-role">M.S. in Quantum Science and Technology</div>
           <div class="cv-org">Korea Advanced Institute of Science and Technology (KAIST)</div>
@@ -543,18 +185,16 @@ footer {
           <div class="cv-note">Transferred from Integrated M.S./Ph.D. Program</div>
         </div>
       </div>
-
       <div class="cv-entry">
-        <div class="cv-date">Mar 2019 –<br>Feb 2024</div>
+        <div class="cv-date">Mar 2019 \u2013<br>Feb 2024</div>
         <div>
           <div class="cv-role">B.S. in Electrical Engineering and Computer Science</div>
           <div class="cv-org">Gwangju Institute of Science and Technology (GIST)</div>
-          <div class="cv-loc">Gwangju, Republic of Korea · Minor in Physics</div>
+          <div class="cv-loc">Gwangju, Republic of Korea \u00b7 Minor in Physics</div>
         </div>
       </div>
-
       <div class="cv-entry">
-        <div class="cv-date">Jun – Dec 2022</div>
+        <div class="cv-date">Jun \u2013 Dec 2022</div>
         <div>
           <div class="cv-role">Exchange Student (Fully Funded)</div>
           <div class="cv-org">University of California, Berkeley</div>
@@ -562,39 +202,35 @@ footer {
         </div>
       </div>
     </div>
-
     <div class="cv-section">
       <div class="cv-section-title">Research Experience</div>
-
       <div class="cv-entry">
-        <div class="cv-date">Mar 2024 –<br>Present</div>
+        <div class="cv-date">Mar 2024 \u2013<br>Present</div>
         <div>
           <div class="cv-role">Graduate Researcher</div>
           <div class="cv-org">KAIST Integrated Metaphotonics Lab (Prof. Sangsik Kim)</div>
           <div class="cv-loc">Daejeon, Republic of Korea</div>
           <ul class="cv-bullets">
             <li>Led full setup of a PIC measurement platform for nonlinear optics and microcomb measurements</li>
-            <li>Designed ring–bus waveguide coupling, heater-integrated GDS layouts; submitted via Ligentec AN350 MPW run</li>
+            <li>Designed ring\u2013bus waveguide coupling, heater-integrated GDS layouts; submitted via Ligentec AN350 MPW run</li>
             <li>Demonstrated frequency comb generation and broadband SHG-based spectral transfer</li>
           </ul>
         </div>
       </div>
-
       <div class="cv-entry">
-        <div class="cv-date">Sep – Dec 2025</div>
+        <div class="cv-date">Sep \u2013 Dec 2025</div>
         <div>
           <div class="cv-role">Visiting Graduate Researcher</div>
-          <div class="cv-org">University of Würzburg (Host: Prof. Sven Höfling)</div>
-          <div class="cv-loc">Würzburg, Germany · In collaboration with KAIST &amp; ETRI</div>
+          <div class="cv-org">University of W\u00fcrzburg (Host: Prof. Sven H\u00f6fling)</div>
+          <div class="cv-loc">W\u00fcrzburg, Germany \u00b7 In collaboration with KAIST &amp; ETRI</div>
           <ul class="cv-bullets">
             <li>COMSOL and RCWA simulations to design grating structures supporting exceptional points</li>
             <li>Experimentally demonstrated EPs in InAs/GaAs quantum dot membrane structures via ARPL, TRPL, and Fourier-plane imaging under cryogenic conditions</li>
           </ul>
         </div>
       </div>
-
       <div class="cv-entry">
-        <div class="cv-date">2023 – 2024</div>
+        <div class="cv-date">2023 \u2013 2024</div>
         <div>
           <div class="cv-role">Undergraduate Researcher</div>
           <div class="cv-org">Nano Electronics and Optoelectronics Lab, GIST (Prof. Dong-Ho Kang)</div>
@@ -606,7 +242,6 @@ footer {
         </div>
       </div>
     </div>
-
     <div class="cv-section">
       <div class="cv-section-title">Skills</div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
@@ -628,17 +263,14 @@ footer {
         </div>
       </div>
     </div>
-
-    <footer><span>Hyejin Yoon © 2026</span><span>ktrnyoon@gmail.com</span></footer>
+    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
   </div>
 
-  <!-- ══ PUBLICATIONS ═══════════════════════════════════════ -->
+  <!-- PUBLICATIONS -->
   <div id="publications" class="section">
     <p class="sec-eyebrow">Publications</p>
     <div class="sec-title">Journals &amp; Conferences</div>
-
     <div class="pub-group-label">Journal Articles</div>
-
     <div class="pub-item-with-img">
       <div class="pub-id">[J0]</div>
       <div>
@@ -646,11 +278,8 @@ footer {
         <div class="pub-authors"><strong>H. Yoon</strong>, ..., S. Kim</div>
         <div class="pub-venue">Manuscript in preparation</div>
       </div>
-      <div class="pub-thumb">
-        <img src="j0.jpg" alt="J0" class="zoomable" onclick="openModal(this.src)">
-      </div>
+      <div class="pub-thumb"><img src="j0.jpg" alt="J0" class="zoomable" onclick="openModal(this.src)"></div>
     </div>
-
     <div class="pub-item-with-img">
       <div class="pub-id">[J1]</div>
       <div>
@@ -658,11 +287,8 @@ footer {
         <div class="pub-authors"><strong>H. Yoon</strong>*, S. Park*, Y. K. Kim*, J. Baek, K. H. Kim, S. Yun, H. Son, J. Choi, B. C. Jang, D.-H. Kang</div>
         <div class="pub-venue"><a href="https://doi.org/10.1002/adfm.74366" target="_blank">Advanced Functional Materials, 2026</a> <span class="pub-badge">Front Cover</span></div>
       </div>
-      <div class="pub-thumb">
-        <img src="advan_jounral.jpg" alt="Advanced Functional Materials" class="zoomable" onclick="openModal(this.src)">
-      </div>
+      <div class="pub-thumb"><img src="advan_jounral.jpg" alt="Advanced Functional Materials" class="zoomable" onclick="openModal(this.src)"></div>
     </div>
-
     <div class="pub-item">
       <div class="pub-id">[J2]</div>
       <div>
@@ -671,9 +297,7 @@ footer {
         <div class="pub-venue"><a href="https://doi.org/10.1515/nanoph-2024-0701" target="_blank">Nanophotonics, 2025</a></div>
       </div>
     </div>
-
     <div class="pub-group-label">Conference Proceedings</div>
-
     <div class="pub-item-with-img">
       <div class="pub-id">[C1]</div>
       <div>
@@ -681,23 +305,17 @@ footer {
         <div class="pub-authors">J. Song*, <strong>H. Yoon</strong>*, S. Baek, S. Kim</div>
         <div class="pub-venue">European Conference on Integrated Optics (ECIO), 2026</div>
       </div>
-      <div class="pub-thumb">
-        <img src="ecio.jpg" alt="ECIO 2026" class="zoomable" onclick="openModal(this.src)">
-      </div>
+      <div class="pub-thumb"><img src="ecio.jpg" alt="ECIO 2026" class="zoomable" onclick="openModal(this.src)"></div>
     </div>
-
     <div class="pub-item-with-img">
       <div class="pub-id">[C2]</div>
       <div>
         <div class="pub-title">InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</div>
-        <div class="pub-authors"><strong>H. Yoon</strong>*, Y. Reum*, M. Lee, D. Shin, C. G. Mayer, J. S. Moon, M. Hartig, B. S. Damasceno, S. Höfling, S.-H. Gong, A. Pfenning, Y.-H. Ko, S. Kim</div>
+        <div class="pub-authors"><strong>H. Yoon</strong>*, Y. Reum*, M. Lee, D. Shin, C. G. Mayer, J. S. Moon, M. Hartig, B. S. Damasceno, S. H\u00f6fling, S.-H. Gong, A. Pfenning, Y.-H. Ko, S. Kim</div>
         <div class="pub-venue">13th International Conference on Quantum Dots, 2026</div>
       </div>
-      <div class="pub-thumb">
-        <img src="fourier.jpg" alt="QD Conference 2026" class="zoomable" onclick="openModal(this.src)">
-      </div>
+      <div class="pub-thumb"><img src="fourier.jpg" alt="QD Conference 2026" class="zoomable" onclick="openModal(this.src)"></div>
     </div>
-
     <div class="pub-item-with-img">
       <div class="pub-id">[C3]</div>
       <div>
@@ -705,11 +323,8 @@ footer {
         <div class="pub-authors"><strong>H. Yoon</strong>, J. Kim, S. Baek, S. Kim</div>
         <div class="pub-venue">Optical Society of Korea Photonics Conference, 2024</div>
       </div>
-      <div class="pub-thumb">
-        <img src="conference_coupling.jpg" alt="OSK 2024" class="zoomable" onclick="openModal(this.src)">
-      </div>
+      <div class="pub-thumb"><img src="conference_coupling.jpg" alt="OSK 2024" class="zoomable" onclick="openModal(this.src)"></div>
     </div>
-
     <div class="pub-item">
       <div class="pub-id">[C4]</div>
       <div>
@@ -718,108 +333,51 @@ footer {
         <div class="pub-venue">Korean Vacuum Society Annual Conference, 2024</div>
       </div>
     </div>
-
     <div class="pub-item">
       <div class="pub-id">[C5]</div>
       <div>
-        <div class="pub-title">MoS₂/InSe Heterostructure Optoelectronic Synaptic Device</div>
+        <div class="pub-title">MoS\u2082/InSe Heterostructure Optoelectronic Synaptic Device</div>
         <div class="pub-authors"><strong>H. Yoon</strong>, S. Park, D.-H. Kang</div>
         <div class="pub-venue">Korean Vacuum Society Annual Conference, 2023 <span class="pub-badge">Best Poster</span></div>
       </div>
     </div>
-
-    <footer><span>Hyejin Yoon © 2026</span><span>ktrnyoon@gmail.com</span></footer>
+    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
   </div>
 
-  <!-- ══ SELECTED AWARDS ════════════════════════════════════ -->
+  <!-- AWARDS -->
   <div id="awards" class="section">
     <p class="sec-eyebrow">Selected Awards</p>
     <div class="sec-title">Honors &amp; Recognitions</div>
-
-    <div class="award-item">
-      <div class="award-date">Dec 2023</div>
-      <div>
-        <div class="award-name">Outstanding Undergraduate Research Award <span class="pub-badge">2nd Place</span></div>
-        <div class="award-org">GIST EECS — Designing optoelectronic device for neuromorphic systems</div>
-      </div>
-    </div>
-    <div class="award-item">
-      <div class="award-date">Aug 2023</div>
-      <div>
-        <div class="award-name">GIST Innovative Convergence Technology Contest <span class="pub-badge">1st Place</span></div>
-        <div class="award-org">AI-based campus energy management system leveraging high-performance AI models</div>
-      </div>
-    </div>
-    <div class="award-item">
-      <div class="award-date">2023</div>
-      <div>
-        <div class="award-name">Best Poster Award</div>
-        <div class="award-org">Korean Vacuum Society Annual Conference — MoS₂/InSe Heterostructure Optoelectronic Synaptic Device</div>
-      </div>
-    </div>
-    <div class="award-item">
-      <div class="award-date">2022</div>
-      <div>
-        <div class="award-name">Quantum Information Hackathon — Community Award</div>
-        <div class="award-org">Ministry of Science and ICT</div>
-      </div>
-    </div>
-    <div class="award-item">
-      <div class="award-date">2021</div>
-      <div>
-        <div class="award-name">Study Abroad Program Scholarship <span class="pub-badge">Fully Funded</span></div>
-        <div class="award-org">GIST — Exchange program at UC Berkeley (8 students/year university-wide)</div>
-      </div>
-    </div>
-    <div class="award-item">
-      <div class="award-date">Feb 2021</div>
-      <div>
-        <div class="award-name">Sunseom Scholarship</div>
-        <div class="award-org">GIST — Outstanding creativity and research potential (2 students/year university-wide)</div>
-      </div>
-    </div>
-    <div class="award-item">
-      <div class="award-date">2020–2022</div>
-      <div>
-        <div class="award-name">Academic Excellence Scholarship</div>
-        <div class="award-org">GIST — Merit-based scholarship for top academic performance</div>
-      </div>
-    </div>
-    <div class="award-item">
-      <div class="award-date">2020</div>
-      <div>
-        <div class="award-name">AI Industrial Intelligence Competition — Excellence Award</div>
-        <div class="award-org">Korea Artificial Intelligence Association</div>
-      </div>
-    </div>
-
-    <footer><span>Hyejin Yoon © 2026</span><span>ktrnyoon@gmail.com</span></footer>
+    <div class="award-item"><div class="award-date">Dec 2023</div><div><div class="award-name">Outstanding Undergraduate Research Award <span class="pub-badge">2nd Place</span></div><div class="award-org">GIST EECS \u2014 Designing optoelectronic device for neuromorphic systems</div></div></div>
+    <div class="award-item"><div class="award-date">Aug 2023</div><div><div class="award-name">GIST Innovative Convergence Technology Contest <span class="pub-badge">1st Place</span></div><div class="award-org">AI-based campus energy management system leveraging high-performance AI models</div></div></div>
+    <div class="award-item"><div class="award-date">2023</div><div><div class="award-name">Best Poster Award</div><div class="award-org">Korean Vacuum Society Annual Conference \u2014 MoS\u2082/InSe Heterostructure Optoelectronic Synaptic Device</div></div></div>
+    <div class="award-item"><div class="award-date">2022</div><div><div class="award-name">Quantum Information Hackathon \u2014 Community Award</div><div class="award-org">Ministry of Science and ICT</div></div></div>
+    <div class="award-item"><div class="award-date">2021</div><div><div class="award-name">Study Abroad Program Scholarship <span class="pub-badge">Fully Funded</span></div><div class="award-org">GIST \u2014 Exchange program at UC Berkeley (8 students/year university-wide)</div></div></div>
+    <div class="award-item"><div class="award-date">Feb 2021</div><div><div class="award-name">Sunseom Scholarship</div><div class="award-org">GIST \u2014 Outstanding creativity and research potential (2 students/year university-wide)</div></div></div>
+    <div class="award-item"><div class="award-date">2020\u20132022</div><div><div class="award-name">Academic Excellence Scholarship</div><div class="award-org">GIST \u2014 Merit-based scholarship for top academic performance</div></div></div>
+    <div class="award-item"><div class="award-date">2020</div><div><div class="award-name">AI Industrial Intelligence Competition \u2014 Excellence Award</div><div class="award-org">Korea Artificial Intelligence Association</div></div></div>
+    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
   </div>
 
-  <!-- ══ ETC ════════════════════════════════════════════════ -->
+  <!-- ETC -->
   <div id="etc" class="section">
     <p class="sec-eyebrow">Etc</p>
     <div class="sec-title">Teaching &amp; Activities</div>
-
     <div class="cv-section">
       <div class="cv-section-title">Teaching Experience</div>
-
       <div class="cv-entry">
-        <div class="cv-date">Mar – Jun 2021</div>
+        <div class="cv-date">Mar \u2013 Jun 2021</div>
         <div>
           <div class="cv-role">Teaching Assistant, Linear Algebra (GS2004)</div>
           <div class="cv-org">GIST</div>
           <div class="cv-loc">Gwangju, Republic of Korea</div>
-          <ul class="cv-bullets">
-            <li>Selected as an undergraduate teaching assistant, assisting in instruction and problem-solving sessions</li>
-          </ul>
+          <ul class="cv-bullets"><li>Selected as an undergraduate teaching assistant, assisting in instruction and problem-solving sessions</li></ul>
         </div>
       </div>
-
       <div class="cv-entry">
-        <div class="cv-date">Jun – Aug 2021</div>
+        <div class="cv-date">Jun \u2013 Aug 2021</div>
         <div>
-          <div class="cv-role">Coding Instructor — ICT World Friends Korea Program</div>
+          <div class="cv-role">Coding Instructor \u2014 ICT World Friends Korea Program</div>
           <div class="cv-org">National Information Society Agency (NIA)</div>
           <div class="cv-loc">Vietnam (remote)</div>
           <ul class="cv-bullets">
@@ -830,24 +388,17 @@ footer {
         </div>
       </div>
     </div>
-
-    <footer><span>Hyejin Yoon © 2026</span><span>ktrnyoon@gmail.com</span></footer>
+    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
   </div>
 
-  <!-- ══ CV ════════════════════════════════════════════════ -->
+  <!-- CV -->
   <div id="cv" class="section">
     <p class="sec-eyebrow">CV</p>
     <div class="sec-title">Curriculum Vitae</div>
-
-    <a class="cv-download" href="CV_Hyejin_Yoon_GIST_KAIST.pdf" target="_blank">↓ Download PDF</a>
-
-    <div class="cv-pdf-wrap">
-      <iframe src="CV_Hyejin_Yoon_GIST_KAIST.pdf"></iframe>
-    </div>
-
-    <footer><span>Hyejin Yoon © 2026</span><span>ktrnyoon@gmail.com</span></footer>
+    <a class="cv-download" href="CV_Hyejin_Yoon_GIST_KAIST.pdf" target="_blank">\u2193 Download PDF</a>
+    <div class="cv-pdf-wrap"><iframe src="CV_Hyejin_Yoon_GIST_KAIST.pdf"></iframe></div>
+    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
   </div>
-
 </div>
 
 <div id="modal" onclick="closeModal()">
@@ -855,43 +406,25 @@ footer {
 </div>
 
 <script>
-function openModal(src) {
-  document.getElementById('modal-img').src = src;
-  document.getElementById('modal').classList.add('open');
-}
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-function showSection(id, el) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+function openModal(src) { document.getElementById('modal-img').src=src; document.getElementById('modal').classList.add('open'); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+function showSection(id,el) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.menu-item').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.menu-item').forEach(a=>a.classList.remove('active'));
   el.classList.add('active');
-  if (window.innerWidth <= 768) {
-    document.getElementById('sidebar').classList.remove('open');
-  }
+  if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('open');
 }
-
-const menuToggle = document.getElementById('menuToggle');
-const sidebar    = document.getElementById('sidebar');
-const content    = document.getElementById('content');
-let isOpen = window.innerWidth > 768;
-
-menuToggle.onclick = function() {
-  if (isOpen) {
-    sidebar.style.transform = 'translateX(-100%)';
-    content.style.marginLeft = '0';
-    menuToggle.style.left = '20px';
-  } else {
-    sidebar.style.transform = 'translateX(0)';
-    content.style.marginLeft = '260px';
-    menuToggle.style.left = '280px';
-  }
-  isOpen = !isOpen;
+const menuToggle=document.getElementById('menuToggle');
+const sidebar=document.getElementById('sidebar');
+const content=document.getElementById('content');
+let isOpen=window.innerWidth>768;
+menuToggle.onclick=function(){
+  if(isOpen){sidebar.style.transform='translateX(-100%)';content.style.marginLeft='0';menuToggle.style.left='20px';}
+  else{sidebar.style.transform='translateX(0)';content.style.marginLeft='260px';menuToggle.style.left='280px';}
+  isOpen=!isOpen;
 };
 </script>
 </body>
 </html>
-
