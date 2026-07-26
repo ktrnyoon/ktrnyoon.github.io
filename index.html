@@ -1,430 +1,414 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hyejin Yoon</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:      #f0eeeb;
-  --bg2:     #e8e5e1;
-  --bg3:     #dddad5;
-  --panel:   #faf9f7;
-  --border:  rgba(0,0,0,0.10);
-  --border2: rgba(0,0,0,0.18);
-  --text:    #1e1c1a;
-  --muted:   #6b6762;
-  --faint:   #9b9894;
-  --accent:  #5a6e4e;
-  --accent2: #4a6278;
-  --accent3: #7a5c6e;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Source Serif 4', Georgia, serif;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 17px;
-  line-height: 1.75;
-}
-a { color: var(--accent2); text-decoration: none; }
-a:hover { text-decoration: underline; }
-#sidebar {
-  position: fixed; top: 0; left: 0; width: 260px; height: 100vh;
-  background: var(--panel); border-right: 1px solid var(--border);
-  padding: 32px 22px; box-sizing: border-box; overflow-y: auto;
-  z-index: 1000; transition: transform 0.35s ease;
-}
-.profile-img {
-  width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px;
-  margin-bottom: 18px; display: block; border: 1px solid var(--border);
-}
-.profile-name { font-family: 'Libre Baskerville', serif; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-.profile-role { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
-.profile-contact { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--muted); line-height: 1.9; margin-bottom: 22px; }
-.profile-contact a { color: var(--accent2); }
-.menu { border-top: 1px solid var(--border); padding-top: 6px; }
-.menu-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); padding: 12px 8px 6px; display: block; }
-.menu-item { padding: 9px 10px; font-family: 'Source Serif 4', serif; font-size: 14px; font-style: italic; border-radius: 4px; color: var(--muted); display: block; text-decoration: none; transition: background 0.15s, color 0.15s; margin-bottom: 2px; }
-.menu-item:hover { background: var(--bg2); color: var(--text); text-decoration: none; }
-.menu-item.active { background: var(--bg2); color: var(--accent); }
-#menuToggle { position: fixed; top: 20px; left: 280px; z-index: 1001; font-size: 20px; background: var(--panel); color: var(--text); padding: 7px 11px; border-radius: 5px; cursor: pointer; border: 1px solid var(--border2); transition: left 0.35s ease; font-family: 'IBM Plex Mono', monospace; }
-#content { margin-left: 260px; padding: 56px 60px; max-width: 1040px; transition: margin-left 0.35s ease; }
-.section { display: none; }
-.section.active { display: block; animation: fadeUp 0.35s ease both; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.sec-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-.sec-title { font-family: 'Libre Baskerville', serif; font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border2); }
-.home-headline { font-family: 'Libre Baskerville', serif; font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 20px; letter-spacing: -0.02em; }
-.home-intro { font-size: 15px; color: var(--muted); max-width: 580px; line-height: 1.85; margin-bottom: 18px; }
-.home-updated { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); margin-top: 4px; margin-bottom: 0; }
-.kw-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 36px; }
-.kw-card { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: border-color 0.2s; }
-.kw-card:hover { border-color: var(--border2); }
-.kw-card-img { width: 100%; height: 150px; background: var(--bg3); overflow: hidden; }
-.kw-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.kw-card-img.double { display: grid; grid-template-columns: 1fr 1fr; height: 150px; gap: 1px; background: var(--border2); }
-.kw-card-img.double img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.kw-card-body { padding: 13px 16px; }
-.kw-card-title { font-family: 'Libre Baskerville', serif; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-.kw-card-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--faint); line-height: 1.6; }
-.cv-section { margin-bottom: 44px; }
-.cv-section-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
-.cv-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
-.cv-entry { display: grid; grid-template-columns: 155px 1fr; gap: 14px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
-.cv-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.cv-date { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); padding-top: 2px; line-height: 1.7; }
-.cv-role { font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
-.cv-org { font-size: 13.5px; color: var(--accent2); font-style: italic; margin-bottom: 3px; }
-.cv-loc { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); margin-bottom: 9px; }
-.cv-note { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); margin-bottom: 9px; }
-.cv-bullets { list-style: none; font-size: 13.5px; color: var(--muted); line-height: 1.75; }
-.cv-bullets li { padding-left: 14px; position: relative; margin-bottom: 4px; }
-.cv-bullets li::before { content: '\2014'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 3px; }
-.pub-group-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin: 32px 0 16px; display: flex; align-items: center; gap: 12px; }
-.pub-group-label:first-child { margin-top: 0; }
-.pub-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
-.pub-item { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--border); }
-.pub-item > * { min-width: 0; }
-.pub-item-with-img { display: grid; grid-template-columns: 44px 1fr 160px; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: start; }
-.pub-item-with-img > * { min-width: 0; }
-.pub-thumb { width: 160px; height: 100px; border-radius: 4px; overflow: hidden; background: var(--bg3); border: 1px solid var(--border); flex-shrink: 0; }
-.pub-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pub-id { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--accent); padding-top: 2px; }
-.pub-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.5; overflow-wrap: break-word; }
-.pub-authors { font-size: 12.5px; color: var(--muted); margin-bottom: 3px; line-height: 1.6; overflow-wrap: break-word; }
-.pub-authors strong { color: var(--accent2); font-weight: 600; font-style: italic; }
-.pub-venue { font-size: 12.5px; color: var(--accent2); font-style: italic; overflow-wrap: break-word; }
-.pub-badge { display: inline-block; margin-left: 7px; font-style: normal; font-family: 'IBM Plex Mono', monospace; font-size: 9px; padding: 2px 7px; border-radius: 3px; background: rgba(90,110,78,0.08); color: var(--accent); border: 1px solid rgba(90,110,78,0.22); vertical-align: middle; }
-.award-item { display: grid; grid-template-columns: 155px 1fr; gap: 14px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-.award-item:last-child { border-bottom: none; }
-.award-date { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); padding-top: 2px; }
-.award-name { font-size: 14px; color: var(--text); margin-bottom: 3px; font-weight: 600; }
-.award-org { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--faint); line-height: 1.6; }
-.cv-pdf-wrap { width: 100%; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; margin-top: 20px; }
-.cv-pdf-wrap iframe { width: 100%; height: 80vh; display: block; border: none; }
-.cv-download { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 10px 18px; border-radius: 4px; background: var(--accent); color: #fff; text-decoration: none; transition: opacity 0.15s; }
-.cv-download:hover { opacity: 0.85; text-decoration: none; }
-footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border2); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--faint); display: flex; justify-content: space-between; }
-#modal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.75); align-items: center; justify-content: center; cursor: zoom-out; }
-#modal.open { display: flex; }
-#modal img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
-.zoomable { cursor: zoom-in; }
-@media (max-width: 768px) {
-  #sidebar { transform: translateX(-100%); }
-  #sidebar.open { transform: translateX(0); box-shadow: 8px 0 30px rgba(0,0,0,0.15); }
-  #menuToggle { left: auto; right: 20px; }
-  #content { margin-left: 0 !important; padding: 28px 20px; }
-  .cv-entry, .award-item { grid-template-columns: 1fr; gap: 4px; }
-  .home-headline { font-size: 28px; }
-  .pub-item, .pub-item-with-img { grid-template-columns: 36px 1fr; }
-  .pub-thumb { display: none; }
-  .kw-grid { grid-template-columns: 1fr; }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hyejin Yoon — photonics researcher at KAIST working on integrated, non-Hermitian, and photonic–electronic systems.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Hyejin Yoon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varta:wght@300..700&amp;family=Ysabeau+Office:ital,wght@0,300..700;1,300..700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260726-5">
 </head>
 <body>
-<div id="menuToggle">\u2630</div>
-<div id="sidebar">
-  <img src="profile.jpg" class="profile-img" alt="Hyejin Yoon">
-  <div class="profile-name">Hyejin Yoon</div>
-  <div class="profile-role">M.S. Candidate \u00b7 KAIST<br>Integrated Metaphotonics Lab<br><span style="color:var(--accent);font-style:italic;">B.S. GIST \u2192 M.S. KAIST</span></div>
-  <div class="profile-contact">\ud83d\udce7 <a href="mailto:ktrnyoon@gmail.com">ktrnyoon@gmail.com</a><br>\ud83d\udccd Daejeon, Republic of Korea</div>
-  <div class="menu">
-    <span class="menu-label">Menu</span>
-    <a href="#" class="menu-item active" onclick="showSection('home',this);return false;">Home</a>
-    <a href="#" class="menu-item" onclick="showSection('background',this);return false;">Academic Background</a>
-    <a href="#" class="menu-item" onclick="showSection('publications',this);return false;">Publications</a>
-    <a href="#" class="menu-item" onclick="showSection('awards',this);return false;">Selected Awards</a>
-    <a href="#" class="menu-item" onclick="showSection('etc',this);return false;">Etc</a>
-    <a href="#" class="menu-item" onclick="showSection('cv',this);return false;">CV</a>
-  </div>
-</div>
-<div id="content">
-  <!-- HOME -->
-  <div id="home" class="section active">
-    <h1 class="home-headline">Bridging photonics<br>and electronics,<br>end-to-end.</h1>
-    <p class="home-intro">M.S. Candidate at KAIST (B.S. GIST). GIST and KAIST are fully funded science and technology universities established by the Korean government.</p>
-    <p class="home-intro">I aspire to develop photonic\u2013electronic hybrid platforms for next-generation AI hardware, combining the programmability and memory of electronics with the ultra-high bandwidth and energy efficiency of photonics to enable novel device functionalities beyond conventional computing systems.</p>
-    <p class="home-updated">Last updated: 2026.06.29</p>
-    <div class="kw-grid">
-      <div class="kw-card">
-        <div class="kw-card-img"><img src="kw-ep.jpg" alt="Non-Hermitian Photonics" class="zoomable" onclick="openModal(this.src)"></div>
-        <div class="kw-card-body"><div class="kw-card-title">Non-Hermitian Photonics</div><div class="kw-card-sub">Exceptional points \u00b7 Quantum dots \u00b7 ARPL</div></div>
-      </div>
-      <div class="kw-card">
-        <div class="kw-card-img double"><img src="comb1.jpg" alt="Microcombs 1" class="zoomable" onclick="openModal(this.src)"><img src="comb2.jpg" alt="Microcombs 2" class="zoomable" onclick="openModal(this.src)"></div>
-        <div class="kw-card-body"><div class="kw-card-title">Integrated Photonics</div><div class="kw-card-sub">Microcombs \u00b7 Ring resonators \u00b7 SHG</div></div>
-      </div>
-      <div class="kw-card">
-        <div class="kw-card-img"><img src="Nr.jpg" alt="Neuromorphic" class="zoomable" onclick="openModal(this.src)"></div>
-        <div class="kw-card-body"><div class="kw-card-title">Photonic\u2013Electronic Hybrid</div><div class="kw-card-sub">2D materials \u00b7 Neuromorphic \u00b7 vdW heterostructure</div></div>
-      </div>
-      <div class="kw-card">
-        <div class="kw-card-img double"><img src="fab.jpg" alt="Fabrication" class="zoomable" onclick="openModal(this.src)"><img src="gds.jpg" alt="GDS Layout" class="zoomable" onclick="openModal(this.src)"></div>
-        <div class="kw-card-body"><div class="kw-card-title">Fabrication-Driven Innovation</div><div class="kw-card-sub">EBL \u00b7 Photolithography \u00b7 MPW (Ligentec AN350)</div></div>
-      </div>
-    </div>
-    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
-  </div>
+  <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span>
+  </button>
 
-  <!-- ACADEMIC BACKGROUND -->
-  <div id="background" class="section">
-    <p class="sec-eyebrow">Academic Background</p>
-    <div class="sec-title">Education &amp; Research Experience</div>
-    <div class="cv-section">
-      <div class="cv-section-title">Education</div>
-      <div class="cv-entry">
-        <div class="cv-date">Mar 2024 \u2013<br>Aug 2026 (exp.)</div>
-        <div>
-          <div class="cv-role">M.S. in Quantum Science and Technology</div>
-          <div class="cv-org">Korea Advanced Institute of Science and Technology (KAIST)</div>
-          <div class="cv-loc">Daejeon, Republic of Korea</div>
-          <div class="cv-note">Transferred from Integrated M.S./Ph.D. Program</div>
-        </div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-date">Mar 2019 \u2013<br>Feb 2024</div>
-        <div>
-          <div class="cv-role">B.S. in Electrical Engineering and Computer Science</div>
-          <div class="cv-org">Gwangju Institute of Science and Technology (GIST)</div>
-          <div class="cv-loc">Gwangju, Republic of Korea \u00b7 Minor in Physics</div>
-        </div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-date">Jun \u2013 Dec 2022</div>
-        <div>
-          <div class="cv-role">Exchange Student (Fully Funded)</div>
-          <div class="cv-org">University of California, Berkeley</div>
-          <div class="cv-loc">California, United States</div>
-        </div>
-      </div>
+  <aside class="sidebar" aria-label="Profile and primary navigation">
+    <a class="sidebar-name" href="#about">Hyejin Yoon</a>
+    <img class="profile-image" src="profile.jpg" alt="Hyejin Yoon">
+    <div class="profile-summary">
+      <p>
+        <strong>Bridging photonics and electronics</strong>
+        <span>through end-to-end research, from device design to full experimental system implementation.</span>
+      </p>
     </div>
-    <div class="cv-section">
-      <div class="cv-section-title">Research Experience</div>
-      <div class="cv-entry">
-        <div class="cv-date">Mar 2024 \u2013<br>Present</div>
-        <div>
-          <div class="cv-role">Graduate Researcher</div>
-          <div class="cv-org">KAIST Integrated Metaphotonics Lab (Prof. Sangsik Kim)</div>
-          <div class="cv-loc">Daejeon, Republic of Korea</div>
-          <ul class="cv-bullets">
-            <li>Led full setup of a PIC measurement platform for nonlinear optics and microcomb measurements</li>
-            <li>Designed ring\u2013bus waveguide coupling, heater-integrated GDS layouts; submitted via Ligentec AN350 MPW run</li>
-            <li>Demonstrated frequency comb generation and broadband SHG-based spectral transfer</li>
-          </ul>
-        </div>
+
+    <nav class="side-nav" aria-label="Primary navigation">
+      <a class="nav-link active" href="#about">About</a>
+      <a class="nav-link" href="#research">Research</a>
+      <a class="nav-link" href="#publications">Publications</a>
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#honors">Honors &amp; Teaching</a>
+      <a class="nav-link" href="#cv">CV</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/ktrnyoon" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://scholar.google.co.kr/citations?user=74v2Yz4AAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
+        <a href="mailto:ktrnyoon@gmail.com">Email</a>
       </div>
-      <div class="cv-entry">
-        <div class="cv-date">Sep \u2013 Dec 2025</div>
-        <div>
-          <div class="cv-role">Visiting Graduate Researcher</div>
-          <div class="cv-org">University of W\u00fcrzburg (Host: Prof. Sven H\u00f6fling)</div>
-          <div class="cv-loc">W\u00fcrzburg, Germany \u00b7 In collaboration with KAIST &amp; ETRI</div>
-          <ul class="cv-bullets">
-            <li>COMSOL and RCWA simulations to design grating structures supporting exceptional points</li>
-            <li>Experimentally demonstrated EPs in InAs/GaAs quantum dot membrane structures via ARPL, TRPL, and Fourier-plane imaging under cryogenic conditions</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-date">2023 \u2013 2024</div>
-        <div>
-          <div class="cv-role">Undergraduate Researcher</div>
-          <div class="cv-org">Nano Electronics and Optoelectronics Lab, GIST (Prof. Dong-Ho Kang)</div>
-          <div class="cv-loc">Gwangju, Republic of Korea</div>
-          <ul class="cv-bullets">
-            <li>Designed and fabricated 2D-material-based optoelectronic synaptic devices for neuromorphic applications</li>
-            <li>Device fabrication, electrical characterization, and system-level analysis</li>
-          </ul>
-        </div>
-      </div>
+      <p>© 2026 Hyejin Yoon<br>Last updated July 2026</p>
     </div>
-    <div class="cv-section">
-      <div class="cv-section-title">Skills</div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
-        <div style="background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:14px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px;">Programming</div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.75;">Python, MATLAB, C/C++, Git, gdsfactory</div>
-        </div>
-        <div style="background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:14px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px;">Simulation</div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.75;">Lumerical, COMSOL, Tidy3D</div>
-        </div>
-        <div style="background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:14px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px;">Experimental</div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.75;">Optical instrumentation &amp; automation; on-chip photonics; cryogenic &amp; electrical characterization; nanofabrication (EBL, photolithography)</div>
-        </div>
-        <div style="background:var(--panel);border:1px solid var(--border);border-radius:5px;padding:14px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px;">Languages</div>
-          <div style="font-size:13px;color:var(--muted);line-height:1.75;">Korean (native), English (fluent)</div>
-        </div>
-      </div>
+  </aside>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#honors">Honors &amp; Teaching</a>
+      <a href="#cv">CV</a>
+    </nav>
+    <div class="mobile-socials">
+      <a href="https://www.linkedin.com/in/ktrnyoon" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="https://scholar.google.co.kr/citations?user=74v2Yz4AAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
+      <a href="mailto:ktrnyoon@gmail.com">Email</a>
     </div>
-    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
   </div>
 
-  <!-- PUBLICATIONS -->
-  <div id="publications" class="section">
-    <p class="sec-eyebrow">Publications</p>
-    <div class="sec-title">Journals &amp; Conferences</div>
-    <div class="pub-group-label">Journal Articles</div>
-    <div class="pub-item-with-img">
-      <div class="pub-id">[J0]</div>
-      <div>
-        <div class="pub-title">InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</div>
-        <div class="pub-authors"><strong>H. Yoon</strong>, ..., S. Kim</div>
-        <div class="pub-venue">Manuscript in preparation</div>
-      </div>
-      <div class="pub-thumb"><img src="j0.jpg" alt="J0" class="zoomable" onclick="openModal(this.src)"></div>
-    </div>
-    <div class="pub-item-with-img">
-      <div class="pub-id">[J1]</div>
-      <div>
-        <div class="pub-title">A Van der Waals Optoelectronic Synapse with Tunable Positive and Negative Post-Synaptic Current for Highly Accurate Spiking Neural Networks</div>
-        <div class="pub-authors"><strong>H. Yoon</strong>*, S. Park*, Y. K. Kim*, J. Baek, K. H. Kim, S. Yun, H. Son, J. Choi, B. C. Jang, D.-H. Kang</div>
-        <div class="pub-venue"><a href="https://doi.org/10.1002/adfm.74366" target="_blank">Advanced Functional Materials, 2026</a> <span class="pub-badge">Front Cover</span></div>
-      </div>
-      <div class="pub-thumb"><img src="advan_jounral.jpg" alt="Advanced Functional Materials" class="zoomable" onclick="openModal(this.src)"></div>
-    </div>
-    <div class="pub-item">
-      <div class="pub-id">[J2]</div>
-      <div>
-        <div class="pub-title">Exceptional Points in a Passive Strip Waveguide</div>
-        <div class="pub-authors">S. Hasanli, M. Hasan, <strong>H. Yoon</strong>, S. Lee, S. Kim</div>
-        <div class="pub-venue"><a href="https://doi.org/10.1515/nanoph-2024-0701" target="_blank">Nanophotonics, 2025</a></div>
-      </div>
-    </div>
-    <div class="pub-group-label">Conference Proceedings</div>
-    <div class="pub-item-with-img">
-      <div class="pub-id">[C1]</div>
-      <div>
-        <div class="pub-title">Second-Harmonic Microcomb Transfer in Dispersion-Engineered Concentric Ring Resonators</div>
-        <div class="pub-authors">J. Song*, <strong>H. Yoon</strong>*, S. Baek, S. Kim</div>
-        <div class="pub-venue">European Conference on Integrated Optics (ECIO), 2026</div>
-      </div>
-      <div class="pub-thumb"><img src="ecio.jpg" alt="ECIO 2026" class="zoomable" onclick="openModal(this.src)"></div>
-    </div>
-    <div class="pub-item-with-img">
-      <div class="pub-id">[C2]</div>
-      <div>
-        <div class="pub-title">InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</div>
-        <div class="pub-authors"><strong>H. Yoon</strong>*, Y. Reum*, M. Lee, D. Shin, C. G. Mayer, J. S. Moon, M. Hartig, B. S. Damasceno, S. H\u00f6fling, S.-H. Gong, A. Pfenning, Y.-H. Ko, S. Kim</div>
-        <div class="pub-venue">13th International Conference on Quantum Dots, 2026</div>
-      </div>
-      <div class="pub-thumb"><img src="fourier.jpg" alt="QD Conference 2026" class="zoomable" onclick="openModal(this.src)"></div>
-    </div>
-    <div class="pub-item-with-img">
-      <div class="pub-id">[C3]</div>
-      <div>
-        <div class="pub-title">Phase-Mismatched Waveguide-to-Racetrack Microresonator Coupling</div>
-        <div class="pub-authors"><strong>H. Yoon</strong>, J. Kim, S. Baek, S. Kim</div>
-        <div class="pub-venue">Optical Society of Korea Photonics Conference, 2024</div>
-      </div>
-      <div class="pub-thumb"><img src="conference_coupling.jpg" alt="OSK 2024" class="zoomable" onclick="openModal(this.src)"></div>
-    </div>
-    <div class="pub-item">
-      <div class="pub-id">[C4]</div>
-      <div>
-        <div class="pub-title">Self-Cavity SNSPDs for High-Efficiency Absorption</div>
-        <div class="pub-authors">M. Park, <strong>H. Yoon</strong>, H. Park, Y. Park</div>
-        <div class="pub-venue">Korean Vacuum Society Annual Conference, 2024</div>
-      </div>
-    </div>
-    <div class="pub-item">
-      <div class="pub-id">[C5]</div>
-      <div>
-        <div class="pub-title">MoS\u2082/InSe Heterostructure Optoelectronic Synaptic Device</div>
-        <div class="pub-authors"><strong>H. Yoon</strong>, S. Park, D.-H. Kang</div>
-        <div class="pub-venue">Korean Vacuum Society Annual Conference, 2023 <span class="pub-badge">Best Poster</span></div>
-      </div>
-    </div>
-    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
-  </div>
-
-  <!-- AWARDS -->
-  <div id="awards" class="section">
-    <p class="sec-eyebrow">Selected Awards</p>
-    <div class="sec-title">Honors &amp; Recognitions</div>
-    <div class="award-item"><div class="award-date">Dec 2023</div><div><div class="award-name">Outstanding Undergraduate Research Award <span class="pub-badge">2nd Place</span></div><div class="award-org">GIST EECS \u2014 Designing optoelectronic device for neuromorphic systems</div></div></div>
-    <div class="award-item"><div class="award-date">Aug 2023</div><div><div class="award-name">GIST Innovative Convergence Technology Contest <span class="pub-badge">1st Place</span></div><div class="award-org">AI-based campus energy management system leveraging high-performance AI models</div></div></div>
-    <div class="award-item"><div class="award-date">2023</div><div><div class="award-name">Best Poster Award</div><div class="award-org">Korean Vacuum Society Annual Conference \u2014 MoS\u2082/InSe Heterostructure Optoelectronic Synaptic Device</div></div></div>
-    <div class="award-item"><div class="award-date">2022</div><div><div class="award-name">Quantum Information Hackathon \u2014 Community Award</div><div class="award-org">Ministry of Science and ICT</div></div></div>
-    <div class="award-item"><div class="award-date">2021</div><div><div class="award-name">Study Abroad Program Scholarship <span class="pub-badge">Fully Funded</span></div><div class="award-org">GIST \u2014 Exchange program at UC Berkeley (8 students/year university-wide)</div></div></div>
-    <div class="award-item"><div class="award-date">Feb 2021</div><div><div class="award-name">Sunseom Scholarship</div><div class="award-org">GIST \u2014 Outstanding creativity and research potential (2 students/year university-wide)</div></div></div>
-    <div class="award-item"><div class="award-date">2020\u20132022</div><div><div class="award-name">Academic Excellence Scholarship</div><div class="award-org">GIST \u2014 Merit-based scholarship for top academic performance</div></div></div>
-    <div class="award-item"><div class="award-date">2020</div><div><div class="award-name">AI Industrial Intelligence Competition \u2014 Excellence Award</div><div class="award-org">Korea Artificial Intelligence Association</div></div></div>
-    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
-  </div>
-
-  <!-- ETC -->
-  <div id="etc" class="section">
-    <p class="sec-eyebrow">Etc</p>
-    <div class="sec-title">Teaching &amp; Activities</div>
-    <div class="cv-section">
-      <div class="cv-section-title">Teaching Experience</div>
-      <div class="cv-entry">
-        <div class="cv-date">Mar \u2013 Jun 2021</div>
-        <div>
-          <div class="cv-role">Teaching Assistant, Linear Algebra (GS2004)</div>
-          <div class="cv-org">GIST</div>
-          <div class="cv-loc">Gwangju, Republic of Korea</div>
-          <ul class="cv-bullets"><li>Selected as an undergraduate teaching assistant, assisting in instruction and problem-solving sessions</li></ul>
+  <main>
+    <section class="section hero" id="about">
+      <h1>Hi, I'm Hyejin!</h1>
+      <img class="mobile-profile-image" src="profile.jpg" alt="Hyejin Yoon">
+      <div class="intro">
+        <p>
+          I am an <mark>M.S. candidate and photonics researcher</mark> at
+          <a class="inline-link" href="https://www.kaist.ac.kr/en/" target="_blank" rel="noreferrer">KAIST</a>,
+          working in the Integrated Metaphotonics Lab. I received my B.S. in Electrical Engineering and
+          Computer Science from <a class="inline-link" href="https://www.gist.ac.kr/en/" target="_blank" rel="noreferrer">GIST</a>,
+          with a minor in Physics.
+        </p>
+        <p>
+          My research goal is to develop <mark class="secondary">photonic–electronic hybrid platforms
+          for next-generation AI hardware</mark>. I combine the programmability and memory of electronics
+          with the bandwidth and energy efficiency of photonics to explore device functionalities beyond
+          conventional computing systems.
+        </p>
+        <div class="tag-list" aria-label="Research interests">
+          <span>Integrated Photonics</span>
+          <span>Non-Hermitian Photonics</span>
+          <span>Photonic–Electronic Systems</span>
+          <span>Nanofabrication</span>
         </div>
       </div>
-      <div class="cv-entry">
-        <div class="cv-date">Jun \u2013 Aug 2021</div>
-        <div>
-          <div class="cv-role">Coding Instructor \u2014 ICT World Friends Korea Program</div>
-          <div class="cv-org">National Information Society Agency (NIA)</div>
-          <div class="cv-loc">Vietnam (remote)</div>
-          <ul class="cv-bullets">
-            <li>Selected as a university representative instructor</li>
-            <li>Delivered Python and JavaScript lectures to international university students</li>
-            <li>Designed and led hands-on programming curricula</li>
-          </ul>
+    </section>
+
+    <section class="section" id="research">
+      <h2>Research</h2>
+      <div class="research-carousel">
+        <div class="research-track" tabindex="0" aria-label="Research topics">
+        <article class="research-card">
+          <div class="research-media">
+            <figure class="image-item">
+              <img src="kw-ep.jpg" alt="Exceptional-point photonics measurement and simulation">
+              <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+            </figure>
+          </div>
+          <div class="research-card-body">
+            <p class="research-index">01</p>
+            <div class="research-copy">
+              <h3>Non-Hermitian Photonics</h3>
+              <p>Exceptional points · Quantum dots · Angle-resolved photoluminescence</p>
+              <p class="research-comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+        </article>
+        <article class="research-card">
+          <div class="research-media">
+            <figure class="image-item">
+              <img src="comb1.jpg" alt="Microcomb measurement setup">
+              <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+            </figure>
+            <figure class="image-item">
+              <img src="integrated-setup.jpg" alt="Integrated photonics measurement setup">
+              <figcaption>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</figcaption>
+            </figure>
+            <figure class="image-item">
+              <img src="comb2.jpg" alt="Microcomb spectrum and integrated resonator">
+              <figcaption>Duis aute irure dolor in reprehenderit in voluptate velit esse.</figcaption>
+            </figure>
+          </div>
+          <div class="research-card-body">
+            <p class="research-index">02</p>
+            <div class="research-copy">
+              <h3>Integrated Photonics</h3>
+              <p>Microcombs · Ring resonators · Second-harmonic generation</p>
+              <p class="research-comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            </div>
+          </div>
+        </article>
+        <article class="research-card">
+          <div class="research-media">
+            <figure class="image-item">
+              <img src="Nr.jpg" alt="Two-dimensional material neuromorphic device">
+              <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+            </figure>
+          </div>
+          <div class="research-card-body">
+            <p class="research-index">03</p>
+            <div class="research-copy">
+              <h3>Photonic–Electronic Systems</h3>
+              <p>2D materials · Neuromorphic devices · van der Waals heterostructures</p>
+              <p class="research-comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+            </div>
+          </div>
+        </article>
+        <article class="research-card">
+          <div class="research-media">
+            <figure class="image-item">
+              <img src="fab.jpg" alt="Nanofabrication process and fabricated photonic chips">
+              <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+            </figure>
+            <figure class="image-item">
+              <img src="gds.jpg" alt="Photonic integrated circuit GDS layout">
+              <figcaption>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</figcaption>
+            </figure>
+          </div>
+          <div class="research-card-body">
+            <p class="research-index">04</p>
+            <div class="research-copy">
+              <h3>Fabrication-Driven Innovation</h3>
+              <p>EBL · Photolithography · MPW design and fabrication</p>
+              <p class="research-comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+            </div>
+          </div>
+        </article>
+        </div>
+        <div class="carousel-progress-wrap">
+          <div class="carousel-progress" role="progressbar" aria-label="Research carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span></span>
+          </div>
+          <p class="carousel-count" aria-hidden="true"><strong>01</strong> / 04</p>
         </div>
       </div>
-    </div>
-    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
-  </div>
+    </section>
 
-  <!-- CV -->
-  <div id="cv" class="section">
-    <p class="sec-eyebrow">CV</p>
-    <div class="sec-title">Curriculum Vitae</div>
-    <a class="cv-download" href="CV_Hyejin_Yoon_GIST_KAIST.pdf" target="_blank">\u2193 Download PDF</a>
-    <div class="cv-pdf-wrap"><iframe src="CV_Hyejin_Yoon_GIST_KAIST.pdf"></iframe></div>
-    <footer><span>Hyejin Yoon \u00a9 2026</span><span>ktrnyoon@gmail.com</span></footer>
-  </div>
-</div>
+    <section class="section" id="publications">
+      <h2>Publications</h2>
+      <div class="publication-list">
+        <article class="publication">
+          <img src="j0.jpg" alt="Exceptional point grating result">
+          <div class="publication-content">
+            <span class="venue-badge">In preparation</span>
+            <h3>InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</h3>
+            <p class="authors"><strong>H. Yoon</strong>, …, S. Kim</p>
+          </div>
+        </article>
 
-<div id="modal" onclick="closeModal()">
-  <img id="modal-img" src="" alt="" onclick="event.stopPropagation()">
-</div>
+        <article class="publication">
+          <img src="advan_jounral.jpg" alt="Advanced Functional Materials front cover">
+          <div class="publication-content">
+            <span class="venue-badge">Advanced Functional Materials · 2026</span>
+            <h3>A Van der Waals Optoelectronic Synapse with Tunable Positive and Negative Post-Synaptic Current for Highly Accurate Spiking Neural Networks</h3>
+            <p class="authors"><strong>H. Yoon*</strong>, S. Park*, Y. K. Kim*, J. Baek, K. H. Kim, S. Yun, H. Son, J. Choi, B. C. Jang, D.-H. Kang</p>
+            <div class="publication-links">
+              <a href="https://doi.org/10.1002/adfm.74366" target="_blank" rel="noreferrer">Paper ↗</a>
+              <span>Front Cover</span>
+            </div>
+          </div>
+        </article>
 
-<script>
-function openModal(src) { document.getElementById('modal-img').src=src; document.getElementById('modal').classList.add('open'); }
-function closeModal() { document.getElementById('modal').classList.remove('open'); }
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-function showSection(id,el) {
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.menu-item').forEach(a=>a.classList.remove('active'));
-  el.classList.add('active');
-  if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('open');
-}
-const menuToggle=document.getElementById('menuToggle');
-const sidebar=document.getElementById('sidebar');
-const content=document.getElementById('content');
-let isOpen=window.innerWidth>768;
-menuToggle.onclick=function(){
-  if(isOpen){sidebar.style.transform='translateX(-100%)';content.style.marginLeft='0';menuToggle.style.left='20px';}
-  else{sidebar.style.transform='translateX(0)';content.style.marginLeft='260px';menuToggle.style.left='280px';}
-  isOpen=!isOpen;
-};
-</script>
+        <article class="publication">
+          <img src="j2.jpg" alt="Exceptional-point grating radiation and transmission measurements">
+          <div class="publication-content">
+            <span class="venue-badge">Nanophotonics · 2025</span>
+            <h3>Exceptional Points in a Passive Strip Waveguide</h3>
+            <p class="authors">S. Hasanli, M. Hasan, <strong>H. Yoon</strong>, S. Lee, S. Kim</p>
+            <div class="publication-links">
+              <a href="https://doi.org/10.1515/nanoph-2024-0701" target="_blank" rel="noreferrer">Paper ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <img src="ecio.jpg" alt="Second-harmonic microcomb transfer result">
+          <div class="publication-content">
+            <span class="venue-badge">ECIO · 2026</span>
+            <h3>Second-Harmonic Microcomb Transfer in Dispersion-Engineered Concentric Ring Resonators</h3>
+            <p class="authors">J. Song*, <strong>H. Yoon*</strong>, S. Baek, S. Kim</p>
+          </div>
+        </article>
+
+        <article class="publication">
+          <img src="fourier.jpg" alt="Fourier-plane image of exceptional-point gratings">
+          <div class="publication-content">
+            <span class="venue-badge">QD 2026</span>
+            <h3>InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</h3>
+            <p class="authors"><strong>H. Yoon*</strong>, Y. Reum*, M. Lee, D. Shin, C. G. Mayer, J. S. Moon, M. Hartig, B. S. Damasceno, S. Höfling, S.-H. Gong, A. Pfenning, Y.-H. Ko, S. Kim</p>
+            <div class="publication-links">
+              <a href="QD2026_poster_v4.pdf" target="_blank">Poster ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <img src="conference_coupling.jpg" alt="Conference presentation on racetrack microresonator coupling">
+          <div class="publication-content">
+            <span class="venue-badge">OSK Photonics Conference · 2024</span>
+            <h3>Phase-Mismatched Waveguide-to-Racetrack Microresonator Coupling</h3>
+            <p class="authors"><strong>H. Yoon</strong>, J. Kim, S. Baek, S. Kim</p>
+          </div>
+        </article>
+
+        <details class="more-publications">
+          <summary>See two more conference papers <span>+</span></summary>
+          <div class="compact-publication">
+            <span>2024</span>
+            <div>
+              <h3>Self-Cavity SNSPDs for High-Efficiency Absorption</h3>
+              <p>M. Park, <strong>H. Yoon</strong>, H. Park, Y. Park · Korean Vacuum Society Annual Conference</p>
+            </div>
+          </div>
+          <div class="compact-publication">
+            <span>2023</span>
+            <div>
+              <h3>MoS₂/InSe Heterostructure Optoelectronic Synaptic Device</h3>
+              <p><strong>H. Yoon</strong>, S. Park, D.-H. Kang · Korean Vacuum Society Annual Conference · Best Poster</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <h2>Experience</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Education</h3>
+        <div class="timeline">
+          <article class="timeline-item">
+            <p class="timeline-date">Mar 2024 — Aug 2026 <span>expected</span></p>
+            <div>
+              <h3>M.S. in Quantum Science and Technology</h3>
+              <p class="organization">Korea Advanced Institute of Science and Technology (KAIST)</p>
+              <p>Transferred from the Integrated M.S./Ph.D. Program · Daejeon, Republic of Korea</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <p class="timeline-date">Mar 2019 — Feb 2024</p>
+            <div>
+              <h3>B.S. in Electrical Engineering and Computer Science</h3>
+              <p class="organization">Gwangju Institute of Science and Technology (GIST)</p>
+              <p>Minor in Physics · Gwangju, Republic of Korea</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <p class="timeline-date">Jun — Dec 2022</p>
+            <div>
+              <h3>Exchange Student</h3>
+              <p class="organization">University of California, Berkeley</p>
+              <p>Fully funded · California, United States</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Research Experience</h3>
+        <div class="timeline">
+          <article class="timeline-item">
+            <p class="timeline-date">Mar 2024 — Present</p>
+            <div>
+              <h3>Graduate Researcher</h3>
+              <p class="organization">KAIST Integrated Metaphotonics Lab · Prof. Sangsik Kim</p>
+              <ul>
+                <li>Built a PIC measurement platform for nonlinear optics and microcomb measurements.</li>
+                <li>Designed ring–bus coupling and heater-integrated GDS layouts for a Ligentec AN350 MPW run.</li>
+                <li>Demonstrated frequency comb generation and broadband SHG-based spectral transfer.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <p class="timeline-date">Sep — Dec 2025</p>
+            <div>
+              <h3>Visiting Graduate Researcher</h3>
+              <p class="organization">University of Würzburg · Host: Prof. Sven Höfling</p>
+              <ul>
+                <li>Designed exceptional-point gratings using COMSOL and RCWA simulations.</li>
+                <li>Experimentally demonstrated EPs in InAs/GaAs quantum-dot membranes using cryogenic ARPL, TRPL, and Fourier-plane imaging.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <p class="timeline-date">2023 — 2024</p>
+            <div>
+              <h3>Undergraduate Researcher</h3>
+              <p class="organization">GIST Nano Electronics and Optoelectronics Lab · Prof. Dong-Ho Kang</p>
+              <ul>
+                <li>Designed and fabricated 2D-material optoelectronic synaptic devices for neuromorphic applications.</li>
+                <li>Conducted device fabrication, electrical characterization, and system-level analysis.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Skills</h3>
+        <div class="skills-grid">
+          <div><span>Programming</span><p>Python, MATLAB, C/C++, Git, gdsfactory</p></div>
+          <div><span>Simulation</span><p>Lumerical, COMSOL, Tidy3D</p></div>
+          <div><span>Experimental</span><p>Optical instrumentation, on-chip photonics, cryogenic and electrical characterization</p></div>
+          <div><span>Fabrication</span><p>Electron-beam lithography, photolithography, MPW workflows</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="honors">
+      <h2>Honors &amp; Teaching</h2>
+      <div class="subsection">
+        <h3 class="subsection-title">Selected Honors</h3>
+        <div class="honors-list">
+          <article><time>Dec 2023</time><div><h3>Outstanding Undergraduate Research Award <span>2nd Place</span></h3><p>GIST EECS · Optoelectronic devices for neuromorphic systems</p></div></article>
+          <article><time>Aug 2023</time><div><h3>GIST Innovative Convergence Technology Contest <span>1st Place</span></h3><p>AI-based campus energy management system</p></div></article>
+          <article><time>2023</time><div><h3>Best Poster Award</h3><p>Korean Vacuum Society Annual Conference</p></div></article>
+          <article><time>2022</time><div><h3>Quantum Information Hackathon · Community Award</h3><p>Ministry of Science and ICT</p></div></article>
+          <article><time>2021</time><div><h3>Study Abroad Program Scholarship <span>Fully Funded</span></h3><p>GIST · UC Berkeley exchange program</p></div></article>
+          <article><time>Feb 2021</time><div><h3>Sunseom Scholarship</h3><p>GIST · Outstanding creativity and research potential</p></div></article>
+          <article><time>2020 — 2022</time><div><h3>Academic Excellence Scholarship</h3><p>GIST · Merit-based scholarship for academic performance</p></div></article>
+          <article><time>2020</time><div><h3>AI Industrial Intelligence Competition · Excellence Award</h3><p>Korea Artificial Intelligence Association</p></div></article>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Teaching</h3>
+        <div class="timeline">
+          <article class="timeline-item">
+            <p class="timeline-date">Mar — Jun 2021</p>
+            <div>
+              <h3>Teaching Assistant · Linear Algebra (GS2004)</h3>
+              <p class="organization">GIST</p>
+              <p>Assisted with instruction and problem-solving sessions as an undergraduate teaching assistant.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <p class="timeline-date">Jun — Aug 2021</p>
+            <div>
+              <h3>Coding Instructor · ICT World Friends Korea Program</h3>
+              <p class="organization">National Information Society Agency</p>
+              <p>Designed and taught hands-on Python and JavaScript curricula to university students in Vietnam remotely.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cv-section" id="cv">
+      <h2>Curriculum Vitae</h2>
+      <div class="cv-card">
+        <div>
+          <p class="cv-label">PDF · Updated 2026</p>
+          <h3>Hyejin Yoon — Curriculum Vitae</h3>
+          <p>Education, research experience, publications, honors, skills, and teaching experience.</p>
+        </div>
+        <div class="cv-actions">
+          <a class="button primary" href="CV_Hyejin_Yoon_GIST_KAIST.pdf" target="_blank">Open CV ↗</a>
+          <a class="button" href="CV_Hyejin_Yoon_GIST_KAIST.pdf" download>Download ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mobile-footer">
+      <p>© 2026 Hyejin Yoon</p>
+      <a href="mailto:ktrnyoon@gmail.com">ktrnyoon@gmail.com</a>
+    </footer>
+  </main>
+
+  <script src="script.js?v=20260726-2"></script>
 </body>
 </html>
