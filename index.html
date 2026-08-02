@@ -16,12 +16,13 @@
   <link rel="stylesheet" href="styles.css?v=20260802-1">
   <style>
     /* Photo captions in the research carousel */
-    .photo-caption {
-      color: #c0392b;
+    .image-item .photo-caption {
+      color: #237c9b;
     }
-    .photo-caption .caption-tag {
+    .image-item .photo-caption::before {
+      content: "\2191";
+      margin-right: 5px;
       font-weight: 600;
-      margin-right: 4px;
     }
     /* Make carousel track scrollable (mouse wheel / trackpad / touch / drag) */
     .research-track {
@@ -148,7 +149,7 @@
           <div class="research-media">
             <figure class="image-item">
               <img src="kw-ep.jpg" alt="Exceptional-point photonics measurement and simulation" class="lightbox-img">
-              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> First integration of exceptional points into a quantum-dot platform, observed via Fourier-plane imaging under cryogenic conditions.</figcaption>
+              <figcaption class="photo-caption">First integration of exceptional points into a quantum-dot platform, observed via Fourier-plane imaging under cryogenic conditions.</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
@@ -168,15 +169,15 @@
           <div class="research-media">
             <figure class="image-item">
               <img src="comb1.jpg" alt="Microcomb measurement setup" class="lightbox-img">
-              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Second-harmonic-generation-based spectral transfer result from a dispersion-engineered ring resonator.</figcaption>
+              <figcaption class="photo-caption">Second-harmonic-generation-based spectral transfer result from a dispersion-engineered ring resonator.</figcaption>
             </figure>
             <figure class="image-item">
               <img src="integrated-setup.jpg" alt="Integrated photonics measurement setup" class="lightbox-img">
-              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Free-space and on-chip measurement setups I built for the PIC platform.</figcaption>
+              <figcaption class="photo-caption">Free-space and on-chip measurement setups I built for the PIC platform.</figcaption>
             </figure>
             <figure class="image-item">
               <img src="comb2.jpg" alt="Microcomb spectrum and integrated resonator" class="lightbox-img">
-              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Frequency comb spectrum observed on an optical spectrum analyzer (OSA).</figcaption>
+              <figcaption class="photo-caption">Frequency comb spectrum observed on an optical spectrum analyzer (OSA).</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
@@ -196,7 +197,7 @@
           <div class="research-media">
             <figure class="image-item">
               <img src="Nr.jpg" alt="Two-dimensional material neuromorphic device" class="lightbox-img">
-              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> The ReS₂/WSe₂/h-BN van der Waals synaptic device, capable of switching photocurrent polarity within a single device.</figcaption>
+              <figcaption class="photo-caption">The ReS₂/WSe₂/h-BN van der Waals synaptic device, capable of switching photocurrent polarity within a single device.</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
@@ -217,11 +218,11 @@
           <div class="research-media">
             <figure class="image-item">
               <img src="fab.jpg" alt="Nanofabrication process and fabricated photonic chips" class="lightbox-img">
-              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Fabricated photonic chips from a 200-design, 20-chip Ligentec AN350 multi-project wafer run.</figcaption>
+              <figcaption class="photo-caption">Fabricated photonic chips from a 200-design, 20-chip Ligentec AN350 multi-project wafer run.</figcaption>
             </figure>
             <figure class="image-item">
               <img src="gds.jpg" alt="Photonic integrated circuit GDS layout" class="lightbox-img">
-              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
+              <figcaption class="photo-caption">GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
