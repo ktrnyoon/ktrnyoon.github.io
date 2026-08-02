@@ -14,6 +14,59 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Varta:wght@300..700&family=Ysabeau+Office:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260726-5">
+  <style>
+    /* Photo captions in the research carousel */
+    .photo-caption {
+      color: #c0392b;
+    }
+    .photo-caption .caption-tag {
+      font-weight: 600;
+      margin-right: 4px;
+    }
+    /* Make carousel track scrollable (mouse wheel / trackpad / touch / drag) */
+    .research-track {
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+    .research-track > .research-card {
+      scroll-snap-align: start;
+    }
+    /* Lightbox for clickable images */
+    .lightbox-img {
+      cursor: zoom-in;
+    }
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox-overlay.active {
+      display: flex;
+    }
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      color: #fff;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+  </style>
 </head>
 <body>
   <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
@@ -99,8 +152,8 @@
         <article class="research-card">
           <div class="research-media">
             <figure class="image-item">
-              <img src="kw-ep.jpg" alt="Exceptional-point photonics measurement and simulation">
-              <figcaption>Fourier-plane imaging of exceptional-point mode coalescence in an InAs/GaAs quantum-dot membrane, captured under cryogenic conditions.</figcaption>
+              <img src="kw-ep.jpg" alt="Exceptional-point photonics measurement and simulation" class="lightbox-img">
+              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> First integration of exceptional points into a quantum-dot platform, observed via Fourier-plane imaging under cryogenic conditions.</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
@@ -119,16 +172,16 @@
         <article class="research-card">
           <div class="research-media">
             <figure class="image-item">
-              <img src="comb1.jpg" alt="Microcomb measurement setup">
-              <figcaption>Real-time microcomb power measurement at 5 GHz sampling using an asymmetric MZI-based detection scheme.</figcaption>
+              <img src="comb1.jpg" alt="Microcomb measurement setup" class="lightbox-img">
+              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Second-harmonic-generation-based spectral transfer result from a dispersion-engineered ring resonator.</figcaption>
             </figure>
             <figure class="image-item">
-              <img src="integrated-setup.jpg" alt="Integrated photonics measurement setup">
-              <figcaption>The PIC measurement platform I built, spanning 1060/1310/1550 nm on-chip wavelengths and 500 nm free-space optics.</figcaption>
+              <img src="integrated-setup.jpg" alt="Integrated photonics measurement setup" class="lightbox-img">
+              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Free-space and on-chip measurement setups I built for the PIC platform.</figcaption>
             </figure>
             <figure class="image-item">
-              <img src="comb2.jpg" alt="Microcomb spectrum and integrated resonator">
-              <figcaption>A dark-soliton comb spectrum generated from one of our dispersion-engineered, high-Q ring resonators.</figcaption>
+              <img src="comb2.jpg" alt="Microcomb spectrum and integrated resonator" class="lightbox-img">
+              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Frequency comb spectrum observed on an optical spectrum analyzer (OSA).</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
@@ -147,8 +200,8 @@
         <article class="research-card">
           <div class="research-media">
             <figure class="image-item">
-              <img src="Nr.jpg" alt="Two-dimensional material neuromorphic device">
-              <figcaption>The ReS₂/WSe₂/h-BN van der Waals synaptic device, capable of switching photocurrent polarity within a single device.</figcaption>
+              <img src="Nr.jpg" alt="Two-dimensional material neuromorphic device" class="lightbox-img">
+              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> The ReS₂/WSe₂/h-BN van der Waals synaptic device, capable of switching photocurrent polarity within a single device.</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
@@ -168,12 +221,12 @@
         <article class="research-card">
           <div class="research-media">
             <figure class="image-item">
-              <img src="fab.jpg" alt="Nanofabrication process and fabricated photonic chips">
-              <figcaption>Fabricated photonic chips from a 200-design, 20-chip Ligentec AN350 multi-project wafer run.</figcaption>
+              <img src="fab.jpg" alt="Nanofabrication process and fabricated photonic chips" class="lightbox-img">
+              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> Fabricated photonic chips from a 200-design, 20-chip Ligentec AN350 multi-project wafer run.</figcaption>
             </figure>
             <figure class="image-item">
-              <img src="gds.jpg" alt="Photonic integrated circuit GDS layout">
-              <figcaption>GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
+              <img src="gds.jpg" alt="Photonic integrated circuit GDS layout" class="lightbox-img">
+              <figcaption class="photo-caption"><span class="caption-tag">Caption for the image above:</span> GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
             </figure>
           </div>
           <div class="research-card-body">
@@ -209,7 +262,7 @@
             <h3>InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</h3>
             <p class="authors"><strong>H. Yoon</strong>, …, S. Kim</p>
             <div class="publication-links">
-              <a href="https://drive.google.com/file/d/1uG2lCdnWv0SLsPjqQWt61--3DDx15MpI/view?usp=sharing" target="_blank" rel="noreferrer">Manuscript ↗</a>
+              <a href="https://drive.google.com/file/d/1uG2lCdnWv0SLsPjqQWt61--3DDx15MpI/view?usp=sharing" target="_blank" rel="noreferrer">Manuscript Link (click it)</a>
             </div>
           </div>
         </article>
@@ -221,7 +274,7 @@
             <h3>A Van der Waals Optoelectronic Synapse with Tunable Positive and Negative Post-Synaptic Current for Highly Accurate Spiking Neural Networks</h3>
             <p class="authors"><strong>H. Yoon*</strong>, S. Park*, Y. K. Kim*, J. Baek, K. H. Kim, S. Yun, H. Son, J. Choi, B. C. Jang, D.-H. Kang</p>
             <div class="publication-links">
-              <a href="https://doi.org/10.1002/adfm.74366" target="_blank" rel="noreferrer">Paper ↗</a>
+              <a href="https://doi.org/10.1002/adfm.74366" target="_blank" rel="noreferrer">Link (click it)</a>
               <span>Front Cover</span>
             </div>
           </div>
@@ -234,7 +287,7 @@
             <h3>Exceptional Points in a Passive Strip Waveguide</h3>
             <p class="authors">S. Hasanli, M. Hasan, <strong>H. Yoon</strong>, S. Lee, S. Kim</p>
             <div class="publication-links">
-              <a href="https://doi.org/10.1515/nanoph-2024-0701" target="_blank" rel="noreferrer">Paper ↗</a>
+              <a href="https://doi.org/10.1515/nanoph-2024-0701" target="_blank" rel="noreferrer">Link (click it)</a>
             </div>
           </div>
         </article>
@@ -246,7 +299,7 @@
             <h3>Second-Harmonic Microcomb Transfer in Dispersion-Engineered Concentric Ring Resonators</h3>
             <p class="authors">J. Song*, <strong>H. Yoon*</strong>, S. Baek, S. Kim</p>
             <div class="publication-links">
-              <a href="https://drive.google.com/file/d/1zNlV3jCjQJA6Fy9j6_u3SwB536mjlyib/view?usp=sharing" target="_blank" rel="noreferrer">Link ↗</a>
+              <a href="https://drive.google.com/file/d/1zNlV3jCjQJA6Fy9j6_u3SwB536mjlyib/view?usp=sharing" target="_blank" rel="noreferrer">Link (click it)</a>
             </div>
           </div>
         </article>
@@ -258,7 +311,7 @@
             <h3>InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</h3>
             <p class="authors"><strong>H. Yoon*</strong>, Y. Reum*, M. Lee, D. Shin, C. G. Mayer, J. S. Moon, M. Hartig, B. S. Damasceno, S. Höfling, S.-H. Gong, A. Pfenning, Y.-H. Ko, S. Kim</p>
             <div class="publication-links">
-              <a href="https://drive.google.com/file/d/1RqHTsK58IqK-zUd3ZTqzYK4_EWnYLp5p/view?usp=sharing" target="_blank" rel="noreferrer">Poster ↗</a>
+              <a href="https://drive.google.com/file/d/1RqHTsK58IqK-zUd3ZTqzYK4_EWnYLp5p/view?usp=sharing" target="_blank" rel="noreferrer">Link (click it)</a>
             </div>
           </div>
         </article>
@@ -270,7 +323,7 @@
             <h3>Phase-Mismatched Waveguide-to-Racetrack Microresonator Coupling</h3>
             <p class="authors"><strong>H. Yoon</strong>, J. Kim, S. Baek, S. Kim</p>
             <div class="publication-links">
-              <a href="https://drive.google.com/file/d/1S9D5Pio03Z8HRBrM-NuHD9Efg11dGN0G/view?usp=sharing" target="_blank" rel="noreferrer">Link ↗</a>
+              <a href="https://drive.google.com/file/d/1S9D5Pio03Z8HRBrM-NuHD9Efg11dGN0G/view?usp=sharing" target="_blank" rel="noreferrer">Link (click it)</a>
             </div>
           </div>
         </article>
@@ -439,4 +492,52 @@
   </main>
 
   <script src="script.js?v=20260726-2"></script>
+  <script>
+    // Allow scrolling the research carousel with the mouse wheel / trackpad
+    (function () {
+      var track = document.querySelector('.research-track');
+      if (track) {
+        track.addEventListener('wheel', function (e) {
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            track.scrollLeft += e.deltaY;
+            e.preventDefault();
+          }
+        }, { passive: false });
+      }
+    })();
+
+    // Lightbox: click any research image to view it full-size
+    (function () {
+      var overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img alt="">';
+      document.body.appendChild(overlay);
+      var overlayImg = overlay.querySelector('img');
+
+      function openLightbox(src, alt) {
+        overlayImg.src = src;
+        overlayImg.alt = alt || '';
+        overlay.classList.add('active');
+      }
+      function closeLightbox() {
+        overlay.classList.remove('active');
+        overlayImg.src = '';
+      }
+
+      document.querySelectorAll('.lightbox-img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          openLightbox(img.src, img.alt);
+        });
+      });
+
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay || e.target.classList.contains('lightbox-close')) {
+          closeLightbox();
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
 </body></html>
