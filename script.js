@@ -42,7 +42,7 @@ const carouselProgress = document.querySelector(".carousel-progress");
 const carouselProgressBar = carouselProgress.querySelector("span");
 const carouselCurrent = document.querySelector(".carousel-count strong");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const carouselSpeed = 10;
+const carouselSpeed = 20;
 let carouselAnimation;
 let previousFrameTime = 0;
 
