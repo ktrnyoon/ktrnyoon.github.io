@@ -275,7 +275,7 @@ mark.secondary {
   border-right: 1px solid #d9e2e6;
   background: #fff;
   flex: 0 0 auto;
-  grid-template-columns: 300px max-content;
+  grid-template-columns: 520px max-content;
   column-gap: 24px;
   align-items: stretch;
 }
@@ -369,6 +369,7 @@ mark.secondary {
 
 .research-card-body {
   display: grid;
+  width: 520px;
   min-width: 0;
   padding: 28px 16px 24px 0;
   grid-column: 1;
@@ -409,9 +410,15 @@ mark.secondary {
 
 .research-copy .research-comment {
   margin-top: 18px;
+  margin-bottom: 0;
+  padding-left: 18px;
   color: #445154;
   font-size: 12.5px;
   line-height: 1.5;
+}
+
+.research-copy .research-comment li + li {
+  margin-top: 4px;
 }
 
 .publication-list {

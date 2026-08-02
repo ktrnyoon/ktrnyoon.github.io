@@ -45,6 +45,7 @@ const carouselSpeed = 20;
 let carouselAnimation;
 let carouselPosition = 0;
 let previousFrameTime = 0;
+let carouselRestartTimer;
 
 researchCards.forEach((card) => {
   const clone = card.cloneNode(true);
@@ -98,6 +99,8 @@ function stopCarousel() {
   cancelAnimationFrame(carouselAnimation);
   carouselAnimation = undefined;
   previousFrameTime = 0;
+  clearTimeout(carouselRestartTimer);
+  carouselRestartTimer = undefined;
 }
 
 function startCarousel() {
@@ -106,19 +109,50 @@ function startCarousel() {
   carouselAnimation = requestAnimationFrame(animateCarousel);
 }
 
+function restartCarouselAfter(delay) {
+  clearTimeout(carouselRestartTimer);
+  carouselRestartTimer = setTimeout(() => {
+    carouselRestartTimer = undefined;
+    startCarousel();
+  }, delay);
+}
+
 researchTrack.addEventListener("pointerdown", stopCarousel);
 researchTrack.addEventListener("pointerup", startCarousel);
 researchTrack.addEventListener("pointercancel", startCarousel);
-researchTrack.addEventListener("scroll", updateCarouselProgress, { passive: true });
+researchTrack.addEventListener(
+  "wheel",
+  (event) => {
+    event.preventDefault();
+    stopCarousel();
+    const distance = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    researchTrack.scrollLeft += distance;
+    carouselPosition = researchTrack.scrollLeft;
+    restartCarouselAfter(220);
+  },
+  { passive: false }
+);
+researchTrack.addEventListener(
+  "scroll",
+  () => {
+    if (!carouselAnimation) carouselPosition = researchTrack.scrollLeft;
+    updateCarouselProgress();
+  },
+  { passive: true }
+);
 
 researchTrack.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") {
     event.preventDefault();
+    stopCarousel();
     researchTrack.scrollBy({ left: -researchTrack.clientWidth / 2, behavior: "smooth" });
+    restartCarouselAfter(400);
   }
   if (event.key === "ArrowRight") {
     event.preventDefault();
+    stopCarousel();
     researchTrack.scrollBy({ left: researchTrack.clientWidth / 2, behavior: "smooth" });
+    restartCarouselAfter(400);
   }
 });
 

@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Varta:wght@300..700&family=Ysabeau+Office:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260726-5">
+  <link rel="stylesheet" href="styles.css?v=20260802-1">
   <style>
     /* Photo captions in the research carousel */
     .photo-caption {
@@ -26,12 +26,7 @@
     /* Make carousel track scrollable (mouse wheel / trackpad / touch / drag) */
     .research-track {
       overflow-x: auto;
-      scroll-behavior: smooth;
-      scroll-snap-type: x proximity;
       -webkit-overflow-scrolling: touch;
-    }
-    .research-track > .research-card {
-      scroll-snap-align: start;
     }
     /* Lightbox for clickable images */
     .lightbox-img {
@@ -256,7 +251,7 @@
       <h2>Publications</h2>
       <div class="publication-list">
         <article class="publication">
-          <img src="j0.jpg" alt="Exceptional point grating result">
+          <img src="j0.jpg" alt="Exceptional point grating result" class="lightbox-img">
           <div class="publication-content">
             <span class="venue-badge">In preparation</span>
             <h3>InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</h3>
@@ -268,7 +263,7 @@
         </article>
 
         <article class="publication">
-          <img src="advan_jounral.jpg" alt="Advanced Functional Materials front cover">
+          <img src="advan_jounral.jpg" alt="Advanced Functional Materials front cover" class="lightbox-img">
           <div class="publication-content">
             <span class="venue-badge">Advanced Functional Materials · 2026</span>
             <h3>A Van der Waals Optoelectronic Synapse with Tunable Positive and Negative Post-Synaptic Current for Highly Accurate Spiking Neural Networks</h3>
@@ -281,7 +276,7 @@
         </article>
 
         <article class="publication">
-          <img src="j2.jpg" alt="Exceptional-point grating radiation and transmission measurements">
+          <img src="j2.jpg" alt="Exceptional-point grating radiation and transmission measurements" class="lightbox-img">
           <div class="publication-content">
             <span class="venue-badge">Nanophotonics · 2025</span>
             <h3>Exceptional Points in a Passive Strip Waveguide</h3>
@@ -293,7 +288,7 @@
         </article>
 
         <article class="publication">
-          <img src="ecio.jpg" alt="Second-harmonic microcomb transfer result">
+          <img src="ecio.jpg" alt="Second-harmonic microcomb transfer result" class="lightbox-img">
           <div class="publication-content">
             <span class="venue-badge">ECIO · 2026</span>
             <h3>Second-Harmonic Microcomb Transfer in Dispersion-Engineered Concentric Ring Resonators</h3>
@@ -305,7 +300,7 @@
         </article>
 
         <article class="publication">
-          <img src="fourier.jpg" alt="Fourier-plane image of exceptional-point gratings">
+          <img src="fourier.jpg" alt="Fourier-plane image of exceptional-point gratings" class="lightbox-img">
           <div class="publication-content">
             <span class="venue-badge">QD 2026</span>
             <h3>InAs/GaAs Quantum Dots at 1D Exceptional Point Gratings</h3>
@@ -317,7 +312,7 @@
         </article>
 
         <article class="publication">
-          <img src="24pc.jpeg" alt="Conference presentation on racetrack microresonator coupling">
+          <img src="24pc.jpeg" alt="Conference presentation on racetrack microresonator coupling" class="lightbox-img">
           <div class="publication-content">
             <span class="venue-badge">OSK Photonics Conference · 2024</span>
             <h3>Phase-Mismatched Waveguide-to-Racetrack Microresonator Coupling</h3>
@@ -491,21 +486,8 @@
     </footer>
   </main>
 
-  <script src="script.js?v=20260726-2"></script>
+  <script src="script.js?v=20260802-1"></script>
   <script>
-    // Allow scrolling the research carousel with the mouse wheel / trackpad
-    (function () {
-      var track = document.querySelector('.research-track');
-      if (track) {
-        track.addEventListener('wheel', function (e) {
-          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            track.scrollLeft += e.deltaY;
-            e.preventDefault();
-          }
-        }, { passive: false });
-      }
-    })();
-
     // Lightbox: click any research image to view it full-size
     (function () {
       var overlay = document.createElement('div');
