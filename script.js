@@ -36,7 +36,6 @@ const sectionObserver = new IntersectionObserver(
 sections.forEach((section) => sectionObserver.observe(section));
 
 const researchTrack = document.querySelector(".research-track");
-const researchCarousel = document.querySelector(".research-carousel");
 const researchCards = [...document.querySelectorAll(".research-card")];
 const carouselProgress = document.querySelector(".carousel-progress");
 const carouselProgressBar = carouselProgress.querySelector("span");
@@ -44,6 +43,7 @@ const carouselCurrent = document.querySelector(".carousel-count strong");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const carouselSpeed = 20;
 let carouselAnimation;
+let carouselPosition = 0;
 let previousFrameTime = 0;
 
 researchCards.forEach((card) => {
@@ -83,13 +83,14 @@ function animateCarousel(frameTime) {
   if (!previousFrameTime) previousFrameTime = frameTime;
   const elapsed = Math.min(frameTime - previousFrameTime, 50);
   previousFrameTime = frameTime;
-  researchTrack.scrollLeft += carouselSpeed * (elapsed / 1000);
+  carouselPosition += carouselSpeed * (elapsed / 1000);
 
   const loopPoint = carouselLoopPoint();
-  if (loopPoint && researchTrack.scrollLeft >= loopPoint) {
-    researchTrack.scrollLeft -= loopPoint;
+  if (loopPoint && carouselPosition >= loopPoint) {
+    carouselPosition -= loopPoint;
   }
 
+  researchTrack.scrollLeft = carouselPosition;
   carouselAnimation = requestAnimationFrame(animateCarousel);
 }
 
@@ -100,20 +101,14 @@ function stopCarousel() {
 }
 
 function startCarousel() {
-  const userIsInteracting =
-    researchCarousel.matches(":hover") || researchCarousel.contains(document.activeElement);
-  if (reduceMotion.matches || document.hidden || carouselAnimation || userIsInteracting) return;
+  if (reduceMotion.matches || document.hidden || carouselAnimation) return;
+  carouselPosition = researchTrack.scrollLeft;
   carouselAnimation = requestAnimationFrame(animateCarousel);
 }
 
-researchCarousel.addEventListener("mouseenter", stopCarousel);
-researchCarousel.addEventListener("mouseleave", startCarousel);
-researchTrack.addEventListener("focusin", stopCarousel);
-researchTrack.addEventListener("focusout", (event) => {
-  if (!researchTrack.contains(event.relatedTarget)) startCarousel();
-});
 researchTrack.addEventListener("pointerdown", stopCarousel);
 researchTrack.addEventListener("pointerup", startCarousel);
+researchTrack.addEventListener("pointercancel", startCarousel);
 researchTrack.addEventListener("scroll", updateCarouselProgress, { passive: true });
 
 researchTrack.addEventListener("keydown", (event) => {
