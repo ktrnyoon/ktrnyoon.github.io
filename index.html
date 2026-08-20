@@ -67,7 +67,6 @@
       background: none;
       border: none;
     }
-
     /* Honors: keep award ranks understated; highlight only selected items */
     .honors-list h3 span {
       background: none !important;
@@ -83,13 +82,36 @@
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
     }
+    /* Patents section */
+    .patent-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 8px;
+    }
+    .patent {
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+    .patent-content h3 {
+      margin: 8px 0 6px;
+    }
+    .patent-meta {
+      color: #555;
+      font-size: 0.92em;
+      margin: 4px 0;
+      line-height: 1.55;
+    }
+    .patent-content .authors {
+      margin: 4px 0 10px;
+    }
   </style>
 </head>
 <body>
   <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
     <span></span><span></span>
   </button>
-
   <aside class="sidebar" aria-label="Profile and primary navigation">
     <a class="sidebar-name" href="#about">Hyejin Yoon</a>
     <img class="profile-image" src="profile.jpg" alt="Hyejin Yoon">
@@ -99,15 +121,14 @@
         <span>through end-to-end research, from device design to full experimental system implementation.</span>
       </p>
     </div>
-
     <nav class="side-nav" aria-label="Primary navigation">
       <a class="nav-link active" href="#about">About</a>
       <a class="nav-link" href="#research">Research</a>
       <a class="nav-link" href="#publications">Publications</a>
+      <a class="nav-link" href="#patents">Patents</a>
       <a class="nav-link" href="#experience">Experience</a>
       <a class="nav-link" href="#honors">Honors &amp; Teaching</a>
     </nav>
-
     <div class="sidebar-footer">
       <div class="social-links">
         <a href="https://www.linkedin.com/in/ktrnyoon" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -117,12 +138,12 @@
       <p>© 2026 Hyejin Yoon<br>Last updated August 2026</p>
     </div>
   </aside>
-
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <nav aria-label="Mobile navigation">
       <a href="#about">About</a>
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
+      <a href="#patents">Patents</a>
       <a href="#experience">Experience</a>
       <a href="#honors">Honors &amp; Teaching</a>
     </nav>
@@ -132,7 +153,6 @@
       <a href="mailto:ktrnyoon@gmail.com">Email</a>
     </div>
   </div>
-
   <main>
     <section class="section hero" id="about">
       <h1>Hi, I'm Hyejin!</h1>
@@ -160,7 +180,6 @@
         </div>
       </div>
     </section>
-
     <section class="section" id="research">
       <h2>Research</h2>
       <div class="research-carousel">
@@ -267,7 +286,6 @@
         </div>
       </div>
     </section>
-
     <section class="section" id="publications">
       <h2>Publications</h2>
       <div class="publication-list">
@@ -282,7 +300,6 @@
             </div>
           </div>
         </article>
-
         <article class="publication">
           <img src="advan_jounral.jpg" alt="Advanced Functional Materials front cover" class="lightbox-img">
           <div class="publication-content">
@@ -295,7 +312,6 @@
             </div>
           </div>
         </article>
-
         <article class="publication">
           <img src="j2.jpg" alt="Exceptional-point grating radiation and transmission measurements" class="lightbox-img">
           <div class="publication-content">
@@ -307,7 +323,6 @@
             </div>
           </div>
         </article>
-
         <article class="publication">
           <img src="ecio.jpg" alt="Second-harmonic microcomb transfer result" class="lightbox-img">
           <div class="publication-content">
@@ -319,7 +334,6 @@
             </div>
           </div>
         </article>
-
         <article class="publication">
           <img src="fourier.jpg" alt="Fourier-plane image of exceptional-point gratings" class="lightbox-img">
           <div class="publication-content">
@@ -331,7 +345,6 @@
             </div>
           </div>
         </article>
-
         <article class="publication">
           <img src="24pc.jpeg" alt="Conference presentation on racetrack microresonator coupling" class="lightbox-img">
           <div class="publication-content">
@@ -343,7 +356,6 @@
             </div>
           </div>
         </article>
-
         <details class="more-publications">
           <summary>See two more conference papers <span>+</span></summary>
           <div class="compact-publication">
@@ -363,10 +375,52 @@
         </details>
       </div>
     </section>
-
+    <section class="section" id="patents">
+      <h2>Patents</h2>
+      <div class="patent-list">
+        <article class="patent">
+          <div class="patent-content">
+            <span class="venue-badge">Application Pending · United States</span>
+            <h3>Bipolar Optical Synaptic Device</h3>
+            <p class="patent-meta">
+              Application No. 19/237,694 · Filed Jun 13, 2025<br>
+              Publication No. US 2026/0017508 A1 · Published Jan 15, 2026
+            </p>
+            <p class="authors">Inventors: D.-H. Kang, <strong>H. Yoon</strong>, S. Park</p>
+            <div class="publication-links">
+              <a href="https://drive.google.com/file/d/1hfmwVJUb5asiPAloNv-kY8yk7jRN7Ieg/view?usp=sharing" target="_blank" rel="noreferrer">Patent Document (PDF)</a>
+            </div>
+          </div>
+        </article>
+        <article class="patent">
+          <div class="patent-content">
+            <span class="venue-badge">Registered · South Korea</span>
+            <h3>Bipolar Optical Synaptic Device</h3>
+            <p class="patent-meta">
+              Application No. 10-2024-0077416 · Filed Jun 14, 2024<br>
+              Registration No. 10-2982359 · Registered Jun 22, 2026
+            </p>
+            <p class="authors">Inventors: D.-H. Kang, <strong>H. Yoon</strong>, S. Park</p>
+            <div class="publication-links">
+              <a href="https://drive.google.com/file/d/1vFHIIxGEpEJC7VsHYLJ4oTIrC3kHsL69/view?usp=sharing" target="_blank" rel="noreferrer">Patent Document (PDF)</a>
+            </div>
+          </div>
+        </article>
+        <article class="patent">
+          <div class="patent-content">
+            <span class="venue-badge">Application Filed · South Korea</span>
+            <h3>Training Data Collection Apparatus, Training Data Collection Method, and Voice Recognition Apparatus</h3>
+            <p class="patent-meta">Application No. 10-2021-0026378 · Filed Feb 26, 2021</p>
+            <p class="authors">Inventors: <strong>H. Yoon</strong>, J. Eom, Y. Kim, H. Kim</p>
+            <div class="publication-links">
+              <a href="https://drive.google.com/file/d/1TdRS2sSnTZ55o0hGCl5GhR_G0V7mqQxn/view?usp=sharing" target="_blank" rel="noreferrer">Application Notice (PDF)</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
     <section class="section" id="experience">
       <h2>Experience</h2>
-
       <div class="subsection">
         <h3 class="subsection-title">Education</h3>
         <div class="timeline">
@@ -396,7 +450,6 @@
           </article>
         </div>
       </div>
-
       <div class="subsection">
         <h3 class="subsection-title">Research Experience</h3>
         <div class="timeline">
@@ -435,7 +488,6 @@
           </article>
         </div>
       </div>
-
       <div class="subsection">
         <h3 class="subsection-title">Skills</h3>
         <div class="skills-grid">
@@ -446,7 +498,6 @@
         </div>
       </div>
     </section>
-
     <section class="section" id="honors">
       <h2>Honors &amp; Teaching</h2>
       <div class="subsection">
@@ -462,7 +513,6 @@
           <article><time>2020</time><div><h3>AI Industrial Intelligence Competition</h3><p>Korea Artificial Intelligence Association · Excellence Award</p></div></article>
         </div>
       </div>
-
       <div class="subsection">
         <h3 class="subsection-title">Teaching</h3>
         <div class="timeline">
@@ -485,13 +535,11 @@
         </div>
       </div>
     </section>
-
     <footer class="mobile-footer">
       <p>© 2026 Hyejin Yoon</p>
       <a href="mailto:ktrnyoon@gmail.com">ktrnyoon@gmail.com</a>
     </footer>
   </main>
-
   <script src="script.js?v=20260811-1"></script>
   <script>
     // Lightbox: click any research image to view it full-size
@@ -501,7 +549,6 @@
       overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img alt="">';
       document.body.appendChild(overlay);
       var overlayImg = overlay.querySelector('img');
-
       function openLightbox(src, alt) {
         overlayImg.src = src;
         overlayImg.alt = alt || '';
@@ -511,13 +558,11 @@
         overlay.classList.remove('active');
         overlayImg.src = '';
       }
-
       document.querySelectorAll('.lightbox-img').forEach(function (img) {
         img.addEventListener('click', function () {
           openLightbox(img.src, img.alt);
         });
       });
-
       overlay.addEventListener('click', function (e) {
         if (e.target === overlay || e.target.classList.contains('lightbox-close')) {
           closeLightbox();
@@ -529,3 +574,4 @@
     })();
   </script>
 </body></html>
+
