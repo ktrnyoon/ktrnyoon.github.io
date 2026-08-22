@@ -46,6 +46,7 @@ let carouselAnimation;
 let carouselPosition = 0;
 let previousFrameTime = 0;
 let carouselRestartTimer;
+let carouselIsInteracting = false;
 
 researchCards.forEach((card) => {
   const clone = card.cloneNode(true);
@@ -104,7 +105,7 @@ function stopCarousel() {
 }
 
 function startCarousel() {
-  if (reduceMotion.matches || document.hidden || carouselAnimation) return;
+  if (reduceMotion.matches || document.hidden || carouselAnimation || carouselIsInteracting) return;
   carouselPosition = researchTrack.scrollLeft;
   carouselAnimation = requestAnimationFrame(animateCarousel);
 }
@@ -117,9 +118,20 @@ function restartCarouselAfter(delay) {
   }, delay);
 }
 
-researchTrack.addEventListener("pointerdown", stopCarousel);
-researchTrack.addEventListener("pointerup", startCarousel);
-researchTrack.addEventListener("pointercancel", startCarousel);
+function beginCarouselInteraction() {
+  carouselIsInteracting = true;
+  stopCarousel();
+}
+
+function endCarouselInteraction() {
+  carouselIsInteracting = false;
+  carouselPosition = researchTrack.scrollLeft;
+  restartCarouselAfter(700);
+}
+
+researchTrack.addEventListener("pointerdown", beginCarouselInteraction);
+researchTrack.addEventListener("pointerup", endCarouselInteraction);
+researchTrack.addEventListener("pointercancel", endCarouselInteraction);
 researchTrack.addEventListener(
   "wheel",
   (event) => {
@@ -135,7 +147,10 @@ researchTrack.addEventListener(
 researchTrack.addEventListener(
   "scroll",
   () => {
-    if (!carouselAnimation) carouselPosition = researchTrack.scrollLeft;
+    if (!carouselAnimation) {
+      carouselPosition = researchTrack.scrollLeft;
+      if (!carouselIsInteracting) restartCarouselAfter(700);
+    }
     updateCarouselProgress();
   },
   { passive: true }
