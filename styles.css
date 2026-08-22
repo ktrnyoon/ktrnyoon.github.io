@@ -898,30 +898,31 @@ mark.secondary {
 
   .research-card {
     width: max-content;
-    height: 480px;
+    height: auto;
     padding-right: 20px;
     flex-basis: auto;
-    grid-template-columns: 1fr;
-    column-gap: 0;
+    grid-template-columns: min(82vw, 360px) max-content;
+    column-gap: 18px;
   }
 
   .research-track {
-    height: 480px;
+    height: auto;
+    align-items: stretch;
     gap: 30px;
   }
 
   .research-media {
     width: max-content;
-    height: 270px;
+    height: 300px;
     padding: 0;
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 1;
     gap: 12px;
     justify-content: flex-start;
   }
 
   .image-item {
-    height: 250px;
+    height: 280px;
   }
 
   .image-item img {
@@ -933,15 +934,39 @@ mark.secondary {
   }
 
   .research-card-body {
-    width: min(100vw - 48px, 712px);
-    padding: 20px 18px 22px 0;
+    width: min(82vw, 360px);
+    padding: 18px 18px 26px 0;
     grid-column: 1;
-    grid-row: 2;
-    grid-template-columns: 68px 1fr;
+    grid-row: 1;
+    grid-template-columns: 54px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 10px;
   }
 
   .research-index {
-    font-size: 48px;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    font-size: 44px;
+  }
+
+  .research-copy {
+    display: contents;
+  }
+
+  .research-copy h3 {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .research-copy > p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .research-copy .research-comment {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 16px;
   }
 
   .publication {
