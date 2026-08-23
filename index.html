@@ -101,7 +101,6 @@
     .topic-photo {
       display: grid;
       width: 240px;
-      align-items: start;
     }
     .topic-photo .slide {
       grid-row: 1;
@@ -110,6 +109,13 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 420ms ease, visibility 420ms ease;
+      /* Each slide fills the cell (whose size = the largest photo in this
+         topic, in BOTH width and height) and centers its photo + caption
+         vertically and horizontally inside it. */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     .topic-photo .slide.is-active {
       opacity: 1;
@@ -117,11 +123,12 @@
     }
     .topic-photo .slide img {
       display: block;
-      width: 240px;
+      width: 100%;
       height: auto;
       background: var(--pale, #fbfcfe);
     }
     .topic-photo .slide figcaption {
+      width: 100%;
       margin-top: 6px;
       font-size: 11.5px;
       font-weight: 400;
@@ -690,7 +697,7 @@
         var current = Math.max(0, slides.findIndex(function (s) { return s.classList.contains("is-active"); }));
         var timer;
         var hovered = false;
- 
+
         var dots = document.createElement("div");
         dots.className = "slide-dots";
         var dotButtons = slides.map(function (_, i) {
@@ -702,7 +709,7 @@
           return b;
         });
         box.appendChild(dots);
- 
+
         function show(i) {
           current = (i + slides.length) % slides.length;
           slides.forEach(function (s, j) { s.classList.toggle("is-active", j === current); });
@@ -712,10 +719,10 @@
         function stop() { clearInterval(timer); timer = undefined; }
         function start() {
           if (timer || hovered || reduceMotion.matches || document.hidden) return;
-          timer = setInterval(tick, 3500);
+          timer = setInterval(tick, 1500);
         }
         function restart() { stop(); start(); }
- 
+
         box.addEventListener("mouseenter", function () { hovered = true; stop(); });
         box.addEventListener("mouseleave", function () { hovered = false; start(); });
         document.addEventListener("visibilitychange", function () {
@@ -724,7 +731,7 @@
         reduceMotion.addEventListener("change", function () {
           if (reduceMotion.matches) stop(); else start();
         });
- 
+
         show(current);
         start();
       });
