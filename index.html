@@ -94,29 +94,31 @@
     .topic-copy li + li {
       margin-top: 4px;
     }
-    /* Rotating photo panel (one photo visible per topic at a time) */
+    /* Rotating photo panel (one photo visible per topic at a time).
+       All slides share the same grid cell, so the panel automatically sizes
+       itself to the TALLEST slide in that topic — photos are never cropped
+       (full image shown at 240px wide, natural aspect ratio). */
     .topic-photo {
-      position: relative;
+      display: grid;
       width: 240px;
+      align-items: start;
     }
     .topic-photo .slide {
-      position: absolute;
-      inset: 0;
+      grid-row: 1;
+      grid-column: 1;
       margin: 0;
       opacity: 0;
       visibility: hidden;
       transition: opacity 420ms ease, visibility 420ms ease;
     }
     .topic-photo .slide.is-active {
-      position: relative;
       opacity: 1;
       visibility: visible;
     }
     .topic-photo .slide img {
       display: block;
       width: 240px;
-      height: 175px;
-      object-fit: cover;
+      height: auto;
       background: var(--pale, #fbfcfe);
     }
     .topic-photo .slide figcaption {
@@ -127,6 +129,8 @@
       color: var(--muted, #7f8f91);
     }
     .topic-photo .slide-dots {
+      grid-row: 2;
+      grid-column: 1;
       display: flex;
       gap: 6px;
       margin-top: 9px;
@@ -157,9 +161,6 @@
       .topic-photo,
       .topic-photo .slide img {
         width: 100%;
-      }
-      .topic-photo .slide img {
-        height: 210px;
       }
     }
     /* Lightbox for clickable images */
@@ -689,7 +690,7 @@
         var current = Math.max(0, slides.findIndex(function (s) { return s.classList.contains("is-active"); }));
         var timer;
         var hovered = false;
-
+ 
         var dots = document.createElement("div");
         dots.className = "slide-dots";
         var dotButtons = slides.map(function (_, i) {
@@ -701,7 +702,7 @@
           return b;
         });
         box.appendChild(dots);
-
+ 
         function show(i) {
           current = (i + slides.length) % slides.length;
           slides.forEach(function (s, j) { s.classList.toggle("is-active", j === current); });
@@ -714,7 +715,7 @@
           timer = setInterval(tick, 3500);
         }
         function restart() { stop(); start(); }
-
+ 
         box.addEventListener("mouseenter", function () { hovered = true; stop(); });
         box.addEventListener("mouseleave", function () { hovered = false; start(); });
         document.addEventListener("visibilitychange", function () {
@@ -723,7 +724,7 @@
         reduceMotion.addEventListener("change", function () {
           if (reduceMotion.matches) stop(); else start();
         });
-
+ 
         show(current);
         start();
       });
