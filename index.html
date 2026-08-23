@@ -29,7 +29,7 @@
       margin-right: 5px;
       font-weight: 600;
     }
-    /* ---- Research section: all three topics visible at once. -------------
+    /* ---- Research Background section: all three topics visible at once. --
        Text is fully static; only the photos inside each topic rotate
        automatically (crossfade). Nothing here captures wheel/scroll events,
        so normal page scrolling works everywhere. ------------------------- */
@@ -83,6 +83,18 @@
       color: var(--muted, #7f8f91);
       font-size: 13px;
       line-height: 1.55;
+    }
+    /* Short thematic summary — the detailed, metric-heavy bullets live in
+       Experience > Research Experience, so this stays high-level. */
+    .topic-copy .topic-desc {
+      margin: 12px 0 0;
+      color: #445154;
+      font-size: 13px;
+      line-height: 1.62;
+    }
+    .topic-copy .topic-desc strong {
+      color: var(--ink, #222);
+      font-weight: 550;
     }
     .topic-copy ul {
       margin: 14px 0 0;
@@ -240,7 +252,7 @@
     .patent-content .authors {
       margin: 4px 0 10px;
     }
-    /* NDA / confidentiality note under a research card's bullet list */
+    /* NDA / confidentiality note under a research card's summary */
     .nda-note {
       margin-top: 10px;
       font-size: 0.85em;
@@ -278,7 +290,7 @@
     </div>
     <nav class="side-nav" aria-label="Primary navigation">
       <a class="nav-link active" href="#about">About</a>
-      <a class="nav-link" href="#research">Research</a>
+      <a class="nav-link" href="#research">Research Background</a>
       <a class="nav-link" href="#publications">Publications</a>
       <a class="nav-link" href="#patents">Patents</a>
       <a class="nav-link" href="#experience">Experience</a>
@@ -295,7 +307,7 @@
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <nav aria-label="Mobile navigation">
       <a href="#about">About</a>
-      <a href="#research">Research</a>
+      <a href="#research">Research Background</a>
       <a href="#publications">Publications</a>
       <a href="#patents">Patents</a>
       <a href="#experience">Experience</a>
@@ -337,7 +349,7 @@
       </div>
     </section>
     <section class="section" id="research">
-      <h2>Research</h2>
+      <h2>Research Background</h2>
       <div class="research-list">
         <article class="topic-card">
           <div class="topic-body">
@@ -345,12 +357,13 @@
             <div class="topic-copy">
               <h3>Integrated Photonics</h3>
               <p class="topic-tags">Microcombs · PIC components · Ring resonators · Second-harmonic generation · Nanofabrication</p>
-              <ul>
-                <li>Designed and optimized PIC components including adiabatic splitters, Sagnac loops, and bus–ring coupling structures for broadband, low-loss operation.</li>
-                <li>Designed dispersion-engineered ring resonators (Q &gt; 10⁶) for dark-soliton frequency comb generation and broadband SHG-based spectral transfer.</li>
-                <li>Built a PIC measurement platform spanning 1060/1310/1550 nm on-chip and 500 nm free-space optics, including real-time comb power measurement at 5 GHz sampling.</li>
-                <li>Designed foundry-ready GDS layouts and submitted 200 ring-resonator designs across 20 chips via a Ligentec AN350 MPW run.</li>
-              </ul>
+              <p class="topic-desc">
+                <strong>On-chip microcombs and nonlinear frequency conversion.</strong>
+                I engineer dispersion-engineered ring resonators with Q over 10⁶ for dark-soliton
+                frequency combs and broadband (&gt;50 THz) SHG-based spectral transfer, carried
+                200 resonator designs across 20 chips through a foundry MPW run, and built the
+                full 1060/1310/1550 nm on-chip measurement platform used to characterize them.
+              </p>
               <p class="nda-note">Additional collaborative projects with industry partners in this area are covered by NDA and are not detailed here.</p>
             </div>
           </div>
@@ -379,11 +392,13 @@
             <div class="topic-copy">
               <h3>Non-Hermitian Photonics</h3>
               <p class="topic-tags">Exceptional points · Quantum dots · Angle-resolved photoluminescence</p>
-              <ul>
-                <li>Designed exceptional-point (EP) grating structures via COMSOL and RCWA simulation at the University of Würzburg.</li>
-                <li>Experimentally demonstrated EPs in InAs/GaAs quantum-dot membranes using ARPL, TRPL, and Fourier-plane imaging under cryogenic conditions.</li>
-                <li>Found that operating near an EP reshapes and enhances spontaneous emission at the single-photon level.</li>
-              </ul>
+              <p class="topic-desc">
+                <strong>Non-Hermitian physics meets quantum light.</strong>
+                I integrated exceptional points into a quantum-dot platform for the first time,
+                from simulation-driven EP grating design to fabrication on InAs/GaAs membranes and
+                cryogenic single-photon measurements, showing that operating near an EP reshapes
+                and enhances spontaneous emission.
+              </p>
             </div>
           </div>
           <div class="topic-photo" data-slideshow>
@@ -407,12 +422,13 @@
             <div class="topic-copy">
               <h3>Optoelectronics</h3>
               <p class="topic-tags">2D materials · Neuromorphic devices · van der Waals heterostructures · Nanofabrication</p>
-              <ul>
-                <li>Proposed a novel Fermi-level modulation scheme for a ReS₂/WSe₂/h-BN van der Waals synapse.</li>
-                <li>Used an O₂ plasma-treated h-BN charge-trapping layer to enable bidirectional photocurrent polarity switching in a single device.</li>
-                <li>Designed and fabricated the devices via electron-beam lithography and photolithography, and performed electrical/optoelectronic characterization.</li>
-                <li>Validated &gt;95% facial recognition accuracy in system-level SNN simulations, published in Advanced Functional Materials as Front Cover.</li>
-              </ul>
+              <p class="topic-desc">
+                <strong>Neuromorphic optoelectronics with 2D materials.</strong>
+                I proposed, fabricated, and characterized a ReS₂/WSe₂/h-BN van der Waals synapse
+                that switches its photocurrent polarity within a single device, enabling spiking
+                neural networks with over 95% recognition accuracy, published as a Front Cover in
+                Advanced Functional Materials.
+              </p>
             </div>
           </div>
           <div class="topic-photo" data-slideshow>
@@ -608,7 +624,7 @@
             </div>
           </article>
           <article class="timeline-item">
-            <p class="timeline-date">Sep — Dec 2025</p>
+            <p class="timeline-date">Sep 2025 — Dec 2025</p>
             <div>
               <h3>Visiting Graduate Researcher</h3>
               <p class="organization">University of Würzburg · Host: Prof. Sven Höfling, Dr. Andreas Pfenning</p>
@@ -619,7 +635,7 @@
             </div>
           </article>
           <article class="timeline-item">
-            <p class="timeline-date">2023 — 2024</p>
+            <p class="timeline-date">Dec 2022 — Jan 2024</p>
             <div>
               <h3>Undergraduate Researcher</h3>
               <p class="organization">GIST Nano Electronics and Optoelectronics Lab · Prof. Dong-Ho Kang</p>
@@ -695,7 +711,6 @@
         var current = Math.max(0, slides.findIndex(function (s) { return s.classList.contains("is-active"); }));
         var timer;
         var hovered = false;
-
         var dots = document.createElement("div");
         dots.className = "slide-dots";
         var dotButtons = slides.map(function (_, i) {
@@ -707,7 +722,6 @@
           return b;
         });
         box.appendChild(dots);
-
         function show(i) {
           current = (i + slides.length) % slides.length;
           slides.forEach(function (s, j) { s.classList.toggle("is-active", j === current); });
@@ -720,7 +734,6 @@
           timer = setInterval(tick, 1500);
         }
         function restart() { stop(); start(); }
-
         box.addEventListener("mouseenter", function () { hovered = true; stop(); });
         box.addEventListener("mouseleave", function () { hovered = false; start(); });
         document.addEventListener("visibilitychange", function () {
@@ -729,7 +742,6 @@
         reduceMotion.addEventListener("change", function () {
           if (reduceMotion.matches) stop(); else start();
         });
-
         show(current);
         start();
       });
