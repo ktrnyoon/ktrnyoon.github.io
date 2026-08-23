@@ -95,9 +95,8 @@
       margin-top: 4px;
     }
     /* Rotating photo panel (one photo visible per topic at a time).
-       All slides share the same grid cell, so the panel automatically sizes
-       itself to the TALLEST slide in that topic — photos are never cropped
-       (full image shown at 240px wide, natural aspect ratio). */
+       A fixed 4:3 frame keeps every slide stable; portrait and wide images
+       are shown in full with natural whitespace around them. */
     .topic-photo {
       display: grid;
       width: 240px;
@@ -109,12 +108,9 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 420ms ease, visibility 420ms ease;
-      /* Each slide fills the cell (whose size = the largest photo in this
-         topic, in BOTH width and height) and centers its photo + caption
-         vertically and horizontally inside it. */
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
     }
     .topic-photo .slide.is-active {
@@ -124,7 +120,9 @@
     .topic-photo .slide img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 180px;
+      object-fit: contain;
+      object-position: center;
       background: var(--pale, #fbfcfe);
     }
     .topic-photo .slide figcaption {
