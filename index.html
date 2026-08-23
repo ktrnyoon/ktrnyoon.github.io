@@ -106,6 +106,27 @@
     .patent-content .authors {
       margin: 4px 0 10px;
     }
+    /* NDA / confidentiality note under a research card's bullet list */
+    .nda-note {
+      margin-top: 10px;
+      font-size: 0.85em;
+      font-style: italic;
+      color: #777;
+      line-height: 1.5;
+    }
+    /* Placeholder box for a research image not yet added */
+    .image-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      border: 1px dashed #b7b7b7;
+      border-radius: 8px;
+      color: #999;
+      font-size: 0.9em;
+      text-align: center;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
@@ -199,18 +220,23 @@
               <img src="comb2.jpg" alt="Microcomb spectrum and integrated resonator" class="lightbox-img">
               <figcaption class="photo-caption">Frequency comb spectrum observed on an optical spectrum analyzer (OSA).</figcaption>
             </figure>
+            <figure class="image-item">
+              <img src="gds.jpg" alt="Photonic integrated circuit GDS layout" class="lightbox-img">
+              <figcaption class="photo-caption">GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
+            </figure>
           </div>
           <div class="research-card-body">
             <p class="research-index">01</p>
             <div class="research-copy">
               <h3>Integrated Photonics</h3>
-              <p>Microcombs · PIC components · Ring resonators · Second-harmonic generation</p>
+              <p>Microcombs · PIC components · Ring resonators · Second-harmonic generation · Nanofabrication</p>
               <ul class="research-comment">
                 <li>Designed and optimized PIC components including adiabatic splitters, Sagnac loops, and bus–ring coupling structures for broadband, low-loss operation.</li>
                 <li>Designed dispersion-engineered ring resonators (Q &gt; 10⁶) for dark-soliton frequency comb generation and broadband SHG-based spectral transfer.</li>
                 <li>Built a PIC measurement platform spanning 1060/1310/1550 nm on-chip and 500 nm free-space optics, including real-time comb power measurement at 5 GHz sampling.</li>
-                <li>Submitted 200 ring designs across 20 chips via Ligentec AN350 MPW run.</li>
+                <li>Designed foundry-ready GDS layouts and submitted 200 ring-resonator designs across 20 chips via a Ligentec AN350 MPW run.</li>
               </ul>
+              <p class="nda-note">Additional collaborative projects with industry partners in this area are covered by NDA and are not detailed here.</p>
             </div>
           </div>
         </article>
@@ -220,11 +246,23 @@
               <img src="kw-ep.jpg" alt="Exceptional-point photonics measurement and simulation" class="lightbox-img">
               <figcaption class="photo-caption">First integration of exceptional points into a quantum-dot platform, observed via Fourier-plane imaging under cryogenic conditions.</figcaption>
             </figure>
+            <figure class="image-item">
+              <img src="dose_variation.jpg" alt="E-beam dose-variation test for EP grating fabrication" class="lightbox-img">
+              <figcaption class="photo-caption">EP grating fabrication process on the InAs/GaAs membrane.</figcaption>
+            </figure>
+            <figure class="image-item">
+              <img src="afm_image.jpg" alt="AFM image of partially etched EP grating" class="lightbox-img">
+              <figcaption class="photo-caption">Partial-etch depth control (ICP-RIE) of the EP grating on the InAs/GaAs membrane.</figcaption>
+            </figure>
+            <figure class="image-item">
+              <div class="image-placeholder">Photo coming soon</div>
+              <figcaption class="photo-caption">Placeholder — photo to be added</figcaption>
+            </figure>
           </div>
           <div class="research-card-body">
             <p class="research-index">02</p>
             <div class="research-copy">
-              <h3>Non-Hermitian Nanophotonics</h3>
+              <h3>Non-Hermitian Photonics</h3>
               <p>Exceptional points · Quantum dots · Angle-resolved photoluminescence</p>
               <ul class="research-comment">
                 <li>Designed exceptional-point (EP) grating structures via COMSOL and RCWA simulation at the University of Würzburg.</li>
@@ -240,41 +278,21 @@
               <img src="Nr.jpg" alt="Two-dimensional material neuromorphic device" class="lightbox-img">
               <figcaption class="photo-caption">Front-cover artwork I designed for the ReS₂/WSe₂/h-BN van der Waals synaptic device, capable of switching photocurrent polarity within a single device.</figcaption>
             </figure>
+            <figure class="image-item">
+              <img src="fab.jpg" alt="Nanofabrication process and fabricated device" class="lightbox-img">
+              <figcaption class="photo-caption">TEM image of the fabricated heterostructure 2D device.</figcaption>
+            </figure>
           </div>
           <div class="research-card-body">
             <p class="research-index">03</p>
             <div class="research-copy">
-              <h3>Photonic–Electronic Systems</h3>
-              <p>2D materials · Neuromorphic devices · van der Waals heterostructures</p>
+              <h3>Optoelectronics</h3>
+              <p>2D materials · Neuromorphic devices · van der Waals heterostructures · Nanofabrication</p>
               <ul class="research-comment">
                 <li>Proposed a novel Fermi-level modulation scheme for a ReS₂/WSe₂/h-BN van der Waals synapse.</li>
                 <li>Used an O₂ plasma-treated h-BN charge-trapping layer to enable bidirectional photocurrent polarity switching in a single device.</li>
-                <li>Designed and fabricated the devices and performed electrical/optoelectronic characterization.</li>
+                <li>Designed and fabricated the devices via electron-beam lithography and photolithography, and performed electrical/optoelectronic characterization.</li>
                 <li>Validated &gt;95% facial recognition accuracy in system-level SNN simulations, published in Advanced Functional Materials as Front Cover.</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-        <article class="research-card">
-          <div class="research-media">
-            <figure class="image-item">
-              <img src="fab.jpg" alt="Nanofabrication process and fabricated photonic chips" class="lightbox-img">
-              <figcaption class="photo-caption">TEM image of the fabricated heterostructure 2D device.</figcaption>
-            </figure>
-            <figure class="image-item">
-              <img src="gds.jpg" alt="Photonic integrated circuit GDS layout" class="lightbox-img">
-              <figcaption class="photo-caption">GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
-            </figure>
-          </div>
-          <div class="research-card-body">
-            <p class="research-index">04</p>
-            <div class="research-copy">
-              <h3>Device Design &amp; Nanofabrication</h3>
-              <p>Device layout · EBL · Photolithography · MPW workflows</p>
-              <ul class="research-comment">
-                <li>Designed device layouts across electronics and photonics, from van der Waals heterostructure devices to integrated photonic circuits.</li>
-                <li>Hands-on nanofabrication experience in electron-beam lithography and photolithography, followed by electrical and optoelectronic device validation.</li>
-                <li>Extended this workflow to foundry-scale PIC design, including adiabatic splitters, Sagnac loops, coupling structures, and 200 ring-resonator variants submitted through a Ligentec AN350 MPW run.</li>
               </ul>
             </div>
           </div>
@@ -284,7 +302,7 @@
           <div class="carousel-progress" role="progressbar" aria-label="Research carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <span></span>
           </div>
-          <p class="carousel-count" aria-hidden="true"><strong>01</strong> / 04</p>
+          <p class="carousel-count" aria-hidden="true"><strong>01</strong> / 03</p>
         </div>
       </div>
     </section>
@@ -296,7 +314,7 @@
           <div class="publication-content">
             <span class="venue-badge">In preparation</span>
             <h3>Monolithic Exceptional Point Control of Single Photon Emission</h3>
-            <p class="authors"><strong>H. Yoon</strong>, …, S. Kim</p>
+            <p class="authors"><strong>H. Yoon*</strong>, Y. Reum*, M. Lee, D. Shin, C. G. Mayer, J. S. Moon, M. Hartig, B. S. Damasceno, S. Höfling, S.-H. Gong, A. Pfenning, Y.-H. Ko, S. Kim</p>
             <div class="publication-links">
               <a href="https://drive.google.com/file/d/1uG2lCdnWv0SLsPjqQWt61--3DDx15MpI/view?usp=sharing" target="_blank" rel="noreferrer">Manuscript Link (click it)</a>
             </div>
