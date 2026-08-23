@@ -29,10 +29,61 @@
       margin-right: 5px;
       font-weight: 600;
     }
-    /* Make carousel track scrollable (mouse wheel / trackpad / touch / drag) */
+    /* Show all research topics at once, stacked vertically, instead of the
+       horizontally-scrolling filmstrip carousel */
     .research-track {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      height: auto !important;
+      overflow: visible !important;
+      gap: 40px !important;
+    }
+    .research-card {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      height: auto !important;
+      padding: 0 0 32px !important;
+      border-right: 0 !important;
+      border-bottom: 1px solid #d9e2e6;
+    }
+    .research-card:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .research-card-body {
+      width: 100% !important;
+      padding: 0 !important;
+      order: 1;
+    }
+    .research-media {
+      width: 100% !important;
+      height: auto !important;
+      flex-wrap: wrap !important;
+      justify-content: flex-start !important;
+      gap: 16px !important;
+      margin-top: 20px;
+      order: 2;
+    }
+    .image-item {
+      width: 170px !important;
+      height: auto !important;
+    }
+    .image-item img {
+      width: 170px !important;
+      height: 130px !important;
+      object-fit: cover;
+    }
+    .image-item figcaption {
+      position: static !important;
+      top: auto !important;
+      width: 170px !important;
+      margin-top: 6px;
+    }
+    /* Page indicator is no longer needed once every card is visible at once */
+    .carousel-progress-wrap {
+      display: none !important;
     }
     /* Lightbox for clickable images */
     .lightbox-img {
