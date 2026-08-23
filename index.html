@@ -20,79 +20,147 @@
       width: 70%;
       height: auto;
     }
-    /* Photo captions in the research carousel */
-    .image-item .photo-caption {
+    /* Photo captions under research photos */
+    .photo-caption {
       color: #237c9b;
     }
-    .image-item .photo-caption::before {
+    .photo-caption::before {
       content: "\2191";
       margin-right: 5px;
       font-weight: 600;
     }
-    /* Show all research topics at once, stacked vertically, instead of the
-       horizontally-scrolling filmstrip carousel */
-    .research-track {
-      display: flex !important;
-      flex-direction: column !important;
-      width: 100% !important;
-      height: auto !important;
-      overflow: visible !important;
-      gap: 0 !important;
+    /* ---- Research section: all three topics visible at once. -------------
+       Text is fully static; only the photos inside each topic rotate
+       automatically (crossfade). Nothing here captures wheel/scroll events,
+       so normal page scrolling works everywhere. ------------------------- */
+    .research-list {
+      display: flex;
+      flex-direction: column;
     }
-    /* script.js clones every .research-card (marked aria-hidden="true") and
-       appends the clones to .research-track to loop its auto-scrolling
-       filmstrip. With the track no longer clipped/scrolling, those clones
-       would otherwise render as duplicate cards below the real ones - hide
-       them. */
-    .research-track > [aria-hidden="true"] {
-      display: none !important;
+    .topic-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      column-gap: 28px;
+      align-items: start;
+      padding: 28px 0;
     }
-    .research-card {
-      display: flex !important;
-      flex-direction: column !important;
-      width: 100% !important;
-      height: auto !important;
-      padding: 32px 0 !important;
-      border-right: 0 !important;
+    .topic-card + .topic-card {
+      border-top: 1px solid var(--line, #e8edf2);
     }
-    .research-card:first-of-type {
-      padding-top: 0 !important;
+    .topic-card:first-child {
+      padding-top: 0;
     }
-    .research-card + .research-card {
-      border-top: 1px solid #d9e2e6;
+    .topic-card:last-child {
+      padding-bottom: 0;
     }
-    .research-card-body {
-      width: 100% !important;
-      padding: 0 !important;
-      order: 1;
+    .topic-body {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      column-gap: 8px;
+      align-content: start;
     }
-    .research-media {
-      width: 100% !important;
-      height: auto !important;
-      flex-wrap: wrap !important;
-      justify-content: flex-start !important;
-      gap: 16px !important;
-      margin-top: 20px;
-      order: 2;
+    .topic-index {
+      margin: 0;
+      color: var(--blue, #00a9ea);
+      font-family: "Ysabeau Office", sans-serif;
+      font-size: 46px;
+      font-weight: 420;
+      line-height: .85;
+      letter-spacing: -.05em;
+      text-align: center;
     }
-    .image-item {
-      width: 170px !important;
-      height: auto !important;
+    .topic-copy {
+      min-width: 0;
     }
-    .image-item img {
-      width: 170px !important;
-      height: 130px !important;
+    .topic-copy h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 550;
+      line-height: 1.25;
+    }
+    .topic-copy .topic-tags {
+      margin: 0;
+      color: var(--muted, #7f8f91);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .topic-copy ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: #445154;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+    .topic-copy li + li {
+      margin-top: 4px;
+    }
+    /* Rotating photo panel (one photo visible per topic at a time) */
+    .topic-photo {
+      position: relative;
+      width: 240px;
+    }
+    .topic-photo .slide {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 420ms ease, visibility 420ms ease;
+    }
+    .topic-photo .slide.is-active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+    }
+    .topic-photo .slide img {
+      display: block;
+      width: 240px;
+      height: 175px;
       object-fit: cover;
+      background: var(--pale, #fbfcfe);
     }
-    .image-item figcaption {
-      position: static !important;
-      top: auto !important;
-      width: 170px !important;
+    .topic-photo .slide figcaption {
       margin-top: 6px;
+      font-size: 11.5px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--muted, #7f8f91);
     }
-    /* Page indicator is no longer needed once every card is visible at once */
-    .carousel-progress-wrap {
-      display: none !important;
+    .topic-photo .slide-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 9px;
+    }
+    .topic-photo .slide-dots button {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #d5dfe3;
+      cursor: pointer;
+    }
+    .topic-photo .slide-dots button.is-active {
+      background: var(--blue, #00a9ea);
+    }
+    @media (max-width: 680px) {
+      .topic-card {
+        grid-template-columns: 1fr;
+        row-gap: 18px;
+      }
+      .topic-body {
+        grid-template-columns: 50px minmax(0, 1fr);
+      }
+      .topic-index {
+        font-size: 40px;
+      }
+      .topic-photo,
+      .topic-photo .slide img {
+        width: 100%;
+      }
+      .topic-photo .slide img {
+        height: 210px;
+      }
     }
     /* Lightbox for clickable images */
     .lightbox-img {
@@ -264,33 +332,14 @@
     </section>
     <section class="section" id="research">
       <h2>Research</h2>
-      <div class="research-carousel">
-        <div class="research-track" tabindex="0" aria-label="Research topics">
-        <article class="research-card">
-          <div class="research-media">
-            <figure class="image-item">
-              <img src="comb1.jpg" alt="Microcomb measurement setup" class="lightbox-img">
-              <figcaption class="photo-caption">Experimental second-harmonic generation setup; the green light is the photo-induced SHG signal, pumped at 1060 nm.</figcaption>
-            </figure>
-            <figure class="image-item">
-              <img src="integrated-setup.jpg" alt="Integrated photonics measurement setup" class="lightbox-img">
-              <figcaption class="photo-caption">On-chip measurement setups I built for the PIC platform.</figcaption>
-            </figure>
-            <figure class="image-item">
-              <img src="comb2.jpg" alt="Microcomb spectrum and integrated resonator" class="lightbox-img">
-              <figcaption class="photo-caption">Frequency comb spectrum observed on an optical spectrum analyzer (OSA).</figcaption>
-            </figure>
-            <figure class="image-item">
-              <img src="gds.jpg" alt="Photonic integrated circuit GDS layout" class="lightbox-img">
-              <figcaption class="photo-caption">GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
-            </figure>
-          </div>
-          <div class="research-card-body">
-            <p class="research-index">01</p>
-            <div class="research-copy">
+      <div class="research-list">
+        <article class="topic-card">
+          <div class="topic-body">
+            <p class="topic-index">01</p>
+            <div class="topic-copy">
               <h3>Integrated Photonics</h3>
-              <p>Microcombs · PIC components · Ring resonators · Second-harmonic generation · Nanofabrication</p>
-              <ul class="research-comment">
+              <p class="topic-tags">Microcombs · PIC components · Ring resonators · Second-harmonic generation · Nanofabrication</p>
+              <ul>
                 <li>Designed and optimized PIC components including adiabatic splitters, Sagnac loops, and bus–ring coupling structures for broadband, low-loss operation.</li>
                 <li>Designed dispersion-engineered ring resonators (Q &gt; 10⁶) for dark-soliton frequency comb generation and broadband SHG-based spectral transfer.</li>
                 <li>Built a PIC measurement platform spanning 1060/1310/1550 nm on-chip and 500 nm free-space optics, including real-time comb power measurement at 5 GHz sampling.</li>
@@ -299,52 +348,60 @@
               <p class="nda-note">Additional collaborative projects with industry partners in this area are covered by NDA and are not detailed here.</p>
             </div>
           </div>
-        </article>
-        <article class="research-card">
-          <div class="research-media">
-            <figure class="image-item">
-              <img src="kw-ep.jpg" alt="Exceptional-point photonics measurement and simulation" class="lightbox-img">
-              <figcaption class="photo-caption">First integration of exceptional points into a quantum-dot platform, observed via Fourier-plane imaging under cryogenic conditions.</figcaption>
+          <div class="topic-photo" data-slideshow>
+            <figure class="slide is-active">
+              <img src="comb1.jpg" alt="Microcomb measurement setup" class="lightbox-img">
+              <figcaption class="photo-caption">Experimental second-harmonic generation setup; the green light is the photo-induced SHG signal, pumped at 1060 nm.</figcaption>
             </figure>
-            <figure class="image-item">
-              <img src="dose_variation.jpg" alt="E-beam dose-variation test for EP grating fabrication" class="lightbox-img">
-              <figcaption class="photo-caption">EP grating fabrication process on the InAs/GaAs membrane.</figcaption>
+            <figure class="slide">
+              <img src="integrated-setup.jpg" alt="Integrated photonics measurement setup" class="lightbox-img">
+              <figcaption class="photo-caption">On-chip measurement setups I built for the PIC platform.</figcaption>
             </figure>
-            <figure class="image-item">
-              <img src="afm_image.jpg" alt="AFM image of partially etched EP grating" class="lightbox-img">
-              <figcaption class="photo-caption">Partial-etch depth control (ICP-RIE) of the EP grating on the InAs/GaAs membrane.</figcaption>
+            <figure class="slide">
+              <img src="comb2.jpg" alt="Microcomb spectrum and integrated resonator" class="lightbox-img">
+              <figcaption class="photo-caption">Frequency comb spectrum observed on an optical spectrum analyzer (OSA).</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="gds.jpg" alt="Photonic integrated circuit GDS layout" class="lightbox-img">
+              <figcaption class="photo-caption">GDS layout of ring-resonator and waveguide coupling designs prior to foundry submission.</figcaption>
             </figure>
           </div>
-          <div class="research-card-body">
-            <p class="research-index">02</p>
-            <div class="research-copy">
+        </article>
+        <article class="topic-card">
+          <div class="topic-body">
+            <p class="topic-index">02</p>
+            <div class="topic-copy">
               <h3>Non-Hermitian Photonics</h3>
-              <p>Exceptional points · Quantum dots · Angle-resolved photoluminescence</p>
-              <ul class="research-comment">
+              <p class="topic-tags">Exceptional points · Quantum dots · Angle-resolved photoluminescence</p>
+              <ul>
                 <li>Designed exceptional-point (EP) grating structures via COMSOL and RCWA simulation at the University of Würzburg.</li>
                 <li>Experimentally demonstrated EPs in InAs/GaAs quantum-dot membranes using ARPL, TRPL, and Fourier-plane imaging under cryogenic conditions.</li>
                 <li>Found that operating near an EP reshapes and enhances spontaneous emission at the single-photon level.</li>
               </ul>
             </div>
           </div>
-        </article>
-        <article class="research-card">
-          <div class="research-media">
-            <figure class="image-item">
-              <img src="Nr.jpg" alt="Two-dimensional material neuromorphic device" class="lightbox-img">
-              <figcaption class="photo-caption">Front-cover artwork I designed for the ReS₂/WSe₂/h-BN van der Waals synaptic device, capable of switching photocurrent polarity within a single device.</figcaption>
+          <div class="topic-photo" data-slideshow>
+            <figure class="slide is-active">
+              <img src="kw-ep.jpg" alt="Exceptional-point photonics measurement and simulation" class="lightbox-img">
+              <figcaption class="photo-caption">First integration of exceptional points into a quantum-dot platform, observed via Fourier-plane imaging under cryogenic conditions.</figcaption>
             </figure>
-            <figure class="image-item">
-              <img src="fab.jpg" alt="Nanofabrication process and fabricated device" class="lightbox-img">
-              <figcaption class="photo-caption">TEM image of the fabricated heterostructure 2D device.</figcaption>
+            <figure class="slide">
+              <img src="dose_variation.jpg" alt="E-beam dose-variation test for EP grating fabrication" class="lightbox-img">
+              <figcaption class="photo-caption">EP grating fabrication process on the InAs/GaAs membrane.</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="afm_image.jpg" alt="AFM image of partially etched EP grating" class="lightbox-img">
+              <figcaption class="photo-caption">Partial-etch depth control (ICP-RIE) of the EP grating on the InAs/GaAs membrane.</figcaption>
             </figure>
           </div>
-          <div class="research-card-body">
-            <p class="research-index">03</p>
-            <div class="research-copy">
+        </article>
+        <article class="topic-card">
+          <div class="topic-body">
+            <p class="topic-index">03</p>
+            <div class="topic-copy">
               <h3>Optoelectronics</h3>
-              <p>2D materials · Neuromorphic devices · van der Waals heterostructures · Nanofabrication</p>
-              <ul class="research-comment">
+              <p class="topic-tags">2D materials · Neuromorphic devices · van der Waals heterostructures · Nanofabrication</p>
+              <ul>
                 <li>Proposed a novel Fermi-level modulation scheme for a ReS₂/WSe₂/h-BN van der Waals synapse.</li>
                 <li>Used an O₂ plasma-treated h-BN charge-trapping layer to enable bidirectional photocurrent polarity switching in a single device.</li>
                 <li>Designed and fabricated the devices via electron-beam lithography and photolithography, and performed electrical/optoelectronic characterization.</li>
@@ -352,14 +409,17 @@
               </ul>
             </div>
           </div>
-        </article>
-        </div>
-        <div class="carousel-progress-wrap">
-          <div class="carousel-progress" role="progressbar" aria-label="Research carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <span></span>
+          <div class="topic-photo" data-slideshow>
+            <figure class="slide is-active">
+              <img src="Nr.jpg" alt="Two-dimensional material neuromorphic device" class="lightbox-img">
+              <figcaption class="photo-caption">Front-cover artwork I designed for the ReS₂/WSe₂/h-BN van der Waals synaptic device, capable of switching photocurrent polarity within a single device.</figcaption>
+            </figure>
+            <figure class="slide">
+              <img src="fab.jpg" alt="Nanofabrication process and fabricated device" class="lightbox-img">
+              <figcaption class="photo-caption">TEM image of the fabricated heterostructure 2D device.</figcaption>
+            </figure>
           </div>
-          <p class="carousel-count" aria-hidden="true"><strong>01</strong> / 03</p>
-        </div>
+        </article>
       </div>
     </section>
     <section class="section" id="publications">
@@ -617,7 +677,58 @@
       <a href="mailto:ktrnyoon@gmail.com">ktrnyoon@gmail.com</a>
     </footer>
   </main>
-  <script src="script.js?v=20260822-1"></script>
+  <script src="script.js?v=20260823-1"></script>
+  <script>
+    // Research photo slideshows: text stays fixed; only photos crossfade.
+    // Pauses while hovered and respects prefers-reduced-motion.
+    (function () {
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      document.querySelectorAll("[data-slideshow]").forEach(function (box) {
+        var slides = [...box.querySelectorAll(".slide")];
+        if (slides.length < 2) return;
+        var current = Math.max(0, slides.findIndex(function (s) { return s.classList.contains("is-active"); }));
+        var timer;
+        var hovered = false;
+
+        var dots = document.createElement("div");
+        dots.className = "slide-dots";
+        var dotButtons = slides.map(function (_, i) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.setAttribute("aria-label", "Photo " + (i + 1) + " of " + slides.length);
+          b.addEventListener("click", function () { show(i); restart(); });
+          dots.appendChild(b);
+          return b;
+        });
+        box.appendChild(dots);
+
+        function show(i) {
+          current = (i + slides.length) % slides.length;
+          slides.forEach(function (s, j) { s.classList.toggle("is-active", j === current); });
+          dotButtons.forEach(function (b, j) { b.classList.toggle("is-active", j === current); });
+        }
+        function tick() { show(current + 1); }
+        function stop() { clearInterval(timer); timer = undefined; }
+        function start() {
+          if (timer || hovered || reduceMotion.matches || document.hidden) return;
+          timer = setInterval(tick, 3500);
+        }
+        function restart() { stop(); start(); }
+
+        box.addEventListener("mouseenter", function () { hovered = true; stop(); });
+        box.addEventListener("mouseleave", function () { hovered = false; start(); });
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) stop(); else start();
+        });
+        reduceMotion.addEventListener("change", function () {
+          if (reduceMotion.matches) stop(); else start();
+        });
+
+        show(current);
+        start();
+      });
+    })();
+  </script>
   <script>
     // Lightbox: click any research image to view it full-size
     (function () {
