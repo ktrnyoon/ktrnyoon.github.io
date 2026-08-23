@@ -37,20 +37,29 @@
       width: 100% !important;
       height: auto !important;
       overflow: visible !important;
-      gap: 40px !important;
+      gap: 0 !important;
+    }
+    /* script.js clones every .research-card (marked aria-hidden="true") and
+       appends the clones to .research-track to loop its auto-scrolling
+       filmstrip. With the track no longer clipped/scrolling, those clones
+       would otherwise render as duplicate cards below the real ones - hide
+       them. */
+    .research-track > [aria-hidden="true"] {
+      display: none !important;
     }
     .research-card {
       display: flex !important;
       flex-direction: column !important;
       width: 100% !important;
       height: auto !important;
-      padding: 0 0 32px !important;
+      padding: 32px 0 !important;
       border-right: 0 !important;
-      border-bottom: 1px solid #d9e2e6;
     }
-    .research-card:last-child {
-      padding-bottom: 0;
-      border-bottom: 0;
+    .research-card:first-of-type {
+      padding-top: 0 !important;
+    }
+    .research-card + .research-card {
+      border-top: 1px solid #d9e2e6;
     }
     .research-card-body {
       width: 100% !important;
